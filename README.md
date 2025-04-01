@@ -2,6 +2,7 @@
 Project title and description.
 
 Setup and installation instructions.
+important Note: we bulit our website for desktops in mind Not laptops 
 
 Usage instructions and examples.
 
