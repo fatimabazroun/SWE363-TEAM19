@@ -2,7 +2,7 @@
 Project title and description.
 
 Setup and installation instructions.
-important Note: we bulit our website for desktops in mind Not laptops 
+important Note: we bulit it for both moblie and desktop  
 
 Usage instructions and examples.
 
