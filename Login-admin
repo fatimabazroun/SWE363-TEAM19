@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Samra - Creator Login</title>
+  <title>Samra - Admin Login</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -123,16 +123,16 @@
     <a href="Homepage.html" style="color: #8b0000; text-decoration: none; font-weight: bold;">← Back to Homepage</a>
   </div>
   <div class="login-container">
-    <h2>Welcome Creator</h2>
-    <p>Please log in to continue sharing stories</p>
+    <h2>Welcome Admin</h2>
+    <p>Please log in to manage the platform</p>
 
     <label>Email Address</label>
-    <input type="email" placeholder="creator@samra.com" required />
+    <input type="email" placeholder="admin@samra.com" required />
 
     <label>Password</label>
     <div class="password-wrapper">
-      <input type="password" id="creatorPassword" placeholder="••••••••" required />
-      <span class="show-hide" onclick="togglePassword('creatorPassword', this)">Show</span>
+      <input type="password" id="adminPassword" placeholder="••••••••" required />
+      <span class="show-hide" onclick="togglePassword('adminPassword', this)">Show</span>
     </div>
 
     <div class="options">
@@ -143,10 +143,10 @@
     <button class="btn">Log In</button>
 
     <div class="bottom-link">
-        Don't have an account? <a href="#">Sign Up</a><br />
-        <a href="homepage.html" style="color: #8b0000; text-decoration: none;">← Back to Homepage</a>
-      </div>
-      
+      Not an admin? <a href="creator-login.html">Login as Creator</a><br />
+      <a href="Homepage.html" style="color: #8b0000; text-decoration: none;">← Back to Homepage</a>
+    </div>
+  </div>
 
   <script>
     function togglePassword(id, toggleEl) {
