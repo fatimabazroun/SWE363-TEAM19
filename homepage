@@ -58,32 +58,48 @@
 
     .hero {
       background: #fff;
-      padding: 2rem;
-      text-align: center;
+      padding: 3rem 2rem;
     }
 
-    .hero img {
-      max-width: 100%;
-      margin-top: 1rem;
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
 
-    .hero h1 {
+    .hero-text {
+      flex: 1 1 50%;
+    }
+
+    .hero-text h1 {
       color: #8b0000;
       font-size: 1.8rem;
-    }
-
-    .hero-buttons {
-      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
 
     .hero-buttons button {
-      margin: 0 0.5rem;
+      margin-right: 1rem;
       padding: 0.75rem 1.5rem;
       background-color: #8b0000;
       border: none;
       color: #fff;
       border-radius: 4px;
       cursor: pointer;
+      font-weight: 600;
+    }
+
+    .hero-image {
+      flex: 1 1 45%;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      max-width: 500px;
     }
 
     .sub-hero {
@@ -199,12 +215,18 @@
   </header>
 
   <section class="hero">
-    <h1>JOIN OUR JOURNEY TO PRESERVE SAUDI ARABIA’S HERITAGE, ONE STORY AT A TIME.</h1>
-    <div class="hero-buttons">
-      <button>Start Reading</button>
-      <button>Start Writing</button>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>JOIN OUR JOURNEY TO PRESERVE SAUDI ARABIA’S HERITAGE, ONE STORY AT A TIME.</h1>
+        <div class="hero-buttons">
+          <button>Start Reading</button>
+          <button>Start Writing</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="transfer-files-concept-landing-page.png" alt="Hero Illustration">
+      </div>
     </div>
-    <img src="transfer-files-concept-landing-page.png" alt="Hero illustration">
   </section>
 
   <section class="sub-hero">
@@ -262,9 +284,5 @@
       <span>in</span>
     </div>
   </footer>
-
-  <script>
-    console.log("Interactive functionality can be added here");
-  </script>
 </body>
 </html>
