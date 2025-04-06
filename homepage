@@ -320,6 +320,13 @@
     background-color: #8b0000;
     color: white;
   }
+ footer {
+      background-color: #562e39;
+      color: white;
+      text-align: right;
+      padding: 1rem 2rem;
+    }
+  
   </style>
 </head>
 <body>
@@ -382,7 +389,7 @@
     Discover stories inspired by Saudi folklore, history, and traditions. Connect with the Kingdom’s rich heritage through community-driven storytelling and cultural events.
   </section>
 
-  <!-- Cards & Pagination would go here (you can paste your existing one below this) -->
+  
 <section class="cards" id="card-container">
     <!-- Page 1 -->
     <div class="card page-1">
@@ -464,6 +471,13 @@
     <button class="page" data-page="2">2</button>
     <button class="next">Next &gt;</button>
   </div>
+
+  <footer>
+    <div class="socials">
+      <span>✉</span>
+      <span>📷</span>
+      <span>in</span>
+    </div>
   
   <!-- JavaScript -->
   <script>
