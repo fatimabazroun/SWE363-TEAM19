@@ -183,7 +183,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="/mnt/data/website_images/logo.jpg" alt="Samara Logo">
+      <img src="logo.jpg" alt="Samara Logo">
     </div>
     <nav>
       <ul>
@@ -204,7 +204,7 @@
       <button>Start Reading</button>
       <button>Start Writing</button>
     </div>
-    <img src="/mnt/data/website_images/transfer-files-concept-landing-page.png" alt="Hero illustration">
+    <img src="transfer-files-concept-landing-page.png" alt="Hero illustration">
   </section>
 
   <section class="sub-hero">
@@ -213,7 +213,7 @@
 
   <section class="cards">
     <div class="card">
-      <img src="/mnt/data/website_images/Gobi-Desert-scaled-1-768x488.jpg" alt="Desert">
+      <img src="Gobi-Desert-scaled-1-768x488.jpg" alt="Desert">
       <div class="card-content">
         <h4>Fiction</h4>
         <p><strong>The Guardian of Desert</strong><br>In the heart of the vast desert...</p>
@@ -221,7 +221,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="/mnt/data/website_images/1-6.webp" alt="Storytelling Event">
+      <img src="1-6.webp" alt="Storytelling Event">
       <div class="card-content">
         <h4>Storytelling Event</h4>
         <p>Explore the magic of Saudi folklore...</p>
@@ -230,7 +230,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="/mnt/data/website_images/869351.jpg" alt="Ubar">
+      <img src="869351.jpg" alt="Ubar">
       <div class="card-content">
         <h4>Historical Narratives</h4>
         <p><strong>The Lost City of Ubar</strong><br>Discover the tale of Ubar...</p>
@@ -238,7 +238,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="/mnt/data/website_images/DSC01793-copy.jpg" alt="Workshop">
+      <img src="DSC01793-copy.jpg" alt="Workshop">
       <div class="card-content">
         <h4>Cultural Workshop</h4>
         <p>Learn how to document folklore and traditions...</p>
