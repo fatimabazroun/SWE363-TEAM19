@@ -124,12 +124,18 @@
     .hero-buttons button {
       margin-right: 1rem;
       padding: 0.75rem 1.5rem;
-      background-color: #8b0000;
-      border: none;
-      color: #fff;
+      background-color: transparent;
+      border: 2px solid #8b0000;
+      color: #8b0000;
       border-radius: 4px;
       cursor: pointer;
       font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .hero-buttons button:hover {
+      background-color: #8b0000;
+      color: white;
     }
 
     .hero-image {
@@ -166,6 +172,11 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
     }
 
     .card img {
@@ -196,11 +207,18 @@
     .card-content button {
       margin-top: 0.5rem;
       padding: 0.4rem 0.8rem;
-      border: none;
-      background-color: #8b0000;
-      color: white;
+      border: 2px solid #8b0000;
+      background-color: transparent;
+      color: #8b0000;
       border-radius: 4px;
       cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .card-content button.joined {
+      background-color: #8b0000;
+      color: white;
+      font-weight: bold;
     }
 
     .pagination {
@@ -395,11 +413,22 @@
       dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     }
 
-    // Optional: close dropdown on outside click
     window.addEventListener('click', function(e) {
       if (!e.target.closest('.dropdown-toggle')) {
         document.getElementById("dropdown").style.display = "none";
       }
+    });
+
+    // Toggle join/joined
+    document.addEventListener('DOMContentLoaded', () => {
+      const joinButtons = document.querySelectorAll('.card-content button');
+
+      joinButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('joined');
+          btn.textContent = btn.classList.contains('joined') ? 'Joined' : 'Join';
+        });
+      });
     });
   </script>
 </body>
