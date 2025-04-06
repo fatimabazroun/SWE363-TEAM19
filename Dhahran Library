@@ -233,126 +233,126 @@
   </script>
 </head>
 <body>
-    <header>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <a href="Homepage.html"><img src="images/logo.jpg" alt="Samra Logo" class="logo"></a>
-          <nav>
-            <ul class="nav-list">
-              <li><a href="Homepage.html">Home page</a></li>
-              <li><a href="Map.html">View Map</a></li>
-              <li tabindex="0">
-                Stories ▾
-                <ul class="dropdown">
-                  <li><a href="popular-stories.html">Popular Stories</a></li>
-                  <li><a href="riyadh-library.html">Riyadh Library</a></li>
-                  <li><a href="dhahran-library.html">Dhahran Library</a></li>
-                </ul>
-              </li>
+      <header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a href="Homepage.html"><img src="images/logo.jpg" alt="Samra Logo" class="logo"></a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="Homepage.html">Home page</a></li>
+          <li><a href="Map.html">View Map</a></li>
+          <li tabindex="0">
+            Stories ▾
+            <ul class="dropdown">
+              <li><a href="popular-stories.html">Popular Stories</a></li>
+              <li><a href="riyadh-library.html">Riyadh Library</a></li>
+              <li><a href="dhahran-library.html">Dhahran Library</a></li>
             </ul>
-          </nav>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-          <input type="text" placeholder="Search for..." class="search-bar">
-          <a href="creator-login.html"><button class="login-btn">Log in As Creator</button></a>
-          <a href="admin-login.html"><button class="login-btn">Log in As Admin</button></a>
-        </div>
-      </header>
-    
-      <div class="container">
-        <h2>Dhahran Library</h2>
-        <div class="cards page active">
-          <!-- Page 1 Cards -->
-          <div class="card">
-            <img src="images/dhahran1.jpg" alt="Fiction">
-            <div class="card-content">
-              <strong>Fiction</strong>
-              <h4>Legends of the Eastern Sands</h4>
-              <p>Stories whispered through the dunes...</p>
-              <span>Noura Al-Dhahrani<br>Author</span>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/dhahran2.jpg" alt="Event">
-            <div class="card-content">
-              <strong>Community Gathering</strong>
-              <h4>Voices of Dhahran</h4>
-              <p>A celebration of storytelling culture...</p>
-              <span>Ali Al-Qatif<br>Speaker</span>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/dhahran3.jpg" alt="History">
-            <div class="card-content">
-              <strong>History</strong>
-              <h4>Chronicles of the Oil Era</h4>
-              <p>Tracing Dhahran’s transformation...</p>
-              <span>Dr. Layla Al-Ahsa<br>Historian</span>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/dhahran4.jpg" alt="Workshop">
-            <div class="card-content">
-              <strong>Workshop</strong>
-              <h4>Preserving Heritage Digitally</h4>
-              <p>Learn digital archiving practices...</p>
-              <span>Mohammed Al-Sabah<br>Archivist</span>
-            </div>
-          </div>
-        </div>
-        <div class="cards page">
-          <!-- Page 2 Cards -->
-          <div class="card">
-            <img src="images/dhahran5.jpg" alt="Art">
-            <div class="card-content">
-              <strong>Art & Culture</strong>
-              <h4>Visual Narratives of Dhahran</h4>
-              <p>Expressions through brush and lens...</p>
-              <span>Huda Al-Khobar<br>Artist</span>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/dhahran6.jpg" alt="Memoir">
-            <div class="card-content">
-              <strong>Memoir</strong>
-              <h4>Growing Up in Aramco</h4>
-              <p>Childhood tales from the company camp...</p>
-              <span>Faisal Al-Hasa<br>Memoirist</span>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/dhahran7.jpg" alt="Documentary">
-            <div class="card-content">
-              <strong>Documentary</strong>
-              <h4>Life Beneath the Oil Towers</h4>
-              <p>Daily routines and lives explored...</p>
-              <span>Salma Al-Jubail<br>Filmmaker</span>
-            </div>
-          </div>
-          <div class="card">
-            <img src="images/dhahran8.jpg" alt="Innovation">
-            <div class="card-content">
-              <strong>Innovation</strong>
-              <h4>The Digital Folklore Project</h4>
-              <p>Tech meets tradition in Dhahran...</p>
-              <span>Sultan Al-Raka<br>Technologist</span>
-            </div>
-          </div>
-        </div>
-        <div class="pagination">
-          <button onclick="showPage(1)">&lt; Previous</button>
-          <button data-page="1" onclick="showPage(1)">1</button>
-          <button data-page="2" onclick="showPage(2)" class="active">2</button>
-          <button disabled>Next &gt;</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+      <input type="text" placeholder="Search for..." class="search-bar">
+      <a href="creator-login.html"><button class="login-btn">Log in As Creator</button></a>
+      <a href="admin-login.html"><button class="login-btn">Log in As Admin</button></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Dhahran Library</h2>
+    <div class="cards page active">
+      <!-- Page 1 Cards -->
+      <div class="card">
+        <img src="images/dhahran1.jpg" alt="Fiction">
+        <div class="card-content">
+          <strong>Fiction</strong>
+          <h4>Legends of the Eastern Sands</h4>
+          <p>Stories whispered through the dunes...</p>
+          <span>Noura Al-Dhahrani<br>Author</span>
         </div>
       </div>
-    
-      <footer>
-        <div class="footer-text">Samra &copy; 2025. All rights reserved.</div>
-        <div class="socials">
-          <span>✉</span>
-          <span>📷</span>
-          <span>in</span>
+      <div class="card">
+        <img src="images/dhahran2.jpg" alt="Event">
+        <div class="card-content">
+          <strong>Community Gathering</strong>
+          <h4>Voices of Dhahran</h4>
+          <p>A celebration of storytelling culture...</p>
+          <span>Ali Al-Qatif<br>Speaker</span>
         </div>
-      </footer>
-    </body>
-    </html>
+      </div>
+      <div class="card">
+        <img src="images/dhahran3.jpg" alt="History">
+        <div class="card-content">
+          <strong>History</strong>
+          <h4>Chronicles of the Oil Era</h4>
+          <p>Tracing Dhahran’s transformation...</p>
+          <span>Dr. Layla Al-Ahsa<br>Historian</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/dhahran4.jpg" alt="Workshop">
+        <div class="card-content">
+          <strong>Workshop</strong>
+          <h4>Preserving Heritage Digitally</h4>
+          <p>Learn digital archiving practices...</p>
+          <span>Mohammed Al-Sabah<br>Archivist</span>
+        </div>
+      </div>
+    </div>
+    <div class="cards page">
+      <!-- Page 2 Cards -->
+      <div class="card">
+        <img src="images/dhahran5.jpg" alt="Art">
+        <div class="card-content">
+          <strong>Art & Culture</strong>
+          <h4>Visual Narratives of Dhahran</h4>
+          <p>Expressions through brush and lens...</p>
+          <span>Huda Al-Khobar<br>Artist</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/dhahran6.jpg" alt="Memoir">
+        <div class="card-content">
+          <strong>Memoir</strong>
+          <h4>Growing Up in Aramco</h4>
+          <p>Childhood tales from the company camp...</p>
+          <span>Faisal Al-Hasa<br>Memoirist</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/dhahran7.jpg" alt="Documentary">
+        <div class="card-content">
+          <strong>Documentary</strong>
+          <h4>Life Beneath the Oil Towers</h4>
+          <p>Daily routines and lives explored...</p>
+          <span>Salma Al-Jubail<br>Filmmaker</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/dhahran8.jpg" alt="Innovation">
+        <div class="card-content">
+          <strong>Innovation</strong>
+          <h4>The Digital Folklore Project</h4>
+          <p>Tech meets tradition in Dhahran...</p>
+          <span>Sultan Al-Raka<br>Technologist</span>
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+      <button onclick="showPage(1)">&lt; Previous</button>
+      <button data-page="1" onclick="showPage(1)">1</button>
+      <button data-page="2" onclick="showPage(2)" class="active">2</button>
+      <button onclick="showPage(2)">&gt; Next</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-text">Samra &copy; 2025. All rights reserved.</div>
+    <div class="socials">
+      <span>✉</span>
+      <span>📷</span>
+      <span>in</span>
+    </div>
+  </footer>
+</body>
+</html>
