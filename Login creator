@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samra - Creator Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f3f6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .login-container {
+      max-width: 400px;
+      background: white;
+      margin: 4rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      display: block;
+      margin: 2rem auto 1rem;
+      max-width: 150px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    p {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .show-hide {
+      float: right;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      background: #8b0000;
+      color: white;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #a30000;
+    }
+
+    .bottom-link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        margin: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="images/logo.jpg" alt="Samra Logo" class="logo" />
+  <div class="login-container">
+    <h2>Welcome Creator</h2>
+    <p>Please log in to continue sharing stories</p>
+
+    <label>Email Address</label>
+    <input type="email" placeholder="creator@samra.com" required />
+
+    <label>Password</label>
+    <input type="password" id="creatorPassword" placeholder="••••••••" required />
+    <span class="show-hide" onclick="togglePassword('creatorPassword')">Show</span>
+
+    <div class="options">
+      <label><input type="checkbox" /> Remember me</label>
+      <a href="#">Forgot Password?</a>
+    </div>
+
+    <button class="btn">Log In</button>
+
+    <div class="bottom-link">Don't have an account? <a href="#">Sign Up</a></div>
+  </div>
+
+  <script>
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+</body>
+</html>
 
