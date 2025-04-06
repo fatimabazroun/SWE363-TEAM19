@@ -36,13 +36,24 @@
     }
 
     .cards {
-      flex-direction: column;
-      align-items: center;
-    }
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .card {
-      width: 90%;
-    }
+  .card {
+    width: 90% !important;
+    max-width: 400px;
+  }
+
+  .card img {
+    height: auto;
+    max-height: 200px;
+  }
+
+  .card-content {
+    text-align: left;
+  }
+
 
     .pagination {
       flex-wrap: wrap;
@@ -71,6 +82,20 @@
       color: #8b0000;
     }
 
+    .search-bar {
+    padding: 0.4rem 0.8rem;
+    border: 2px solid #8b0000;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 180px;
+  }
+
+  @media (max-width: 768px) {
+    .search-bar {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  }
     nav ul {
       list-style: none;
       display: flex;
@@ -317,10 +342,12 @@
         </ul>
       </nav>
     </div>
-    <div style="display: flex; gap: 0.5rem;">
-      <button class="login-btn">Log in As Creator</button>
-      <button class="login-btn">Log in As Admin</button>
-    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+        <input type="text" placeholder="Search stories..." class="search-bar">
+        <button class="login-btn">Log in As Creator</button>
+        <button class="login-btn">Log in As Admin</button>
+      </div>
+      
   </header>
       
 
