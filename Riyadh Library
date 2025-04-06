@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Riyadh Library - Samra</title>
+  <title>Samra - Map</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #fdf8f3;
     }
+
     header {
       background: white;
       padding: 1rem 2rem;
@@ -18,9 +19,11 @@
       align-items: center;
       border-bottom: 2px solid #e0c6b5;
     }
+
     .logo {
       height: 40px;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -28,18 +31,23 @@
       margin: 0;
       padding: 0;
     }
+
     nav ul li {
       cursor: pointer;
       position: relative;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
-    nav ul li a {
-      text-decoration: none;
-      color: black;
-    }
-    nav ul li:hover, nav ul li:hover > a {
+
+    nav ul li:hover {
       color: #8b0000;
     }
+
+    nav ul li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .dropdown {
       position: absolute;
       top: 100%;
@@ -53,18 +61,22 @@
       min-width: 150px;
       z-index: 1000;
     }
-    .nav-list li:hover .dropdown {
-      display: block;
-    }
+
     .dropdown li {
       padding: 0.5rem 1rem;
       cursor: pointer;
       white-space: nowrap;
     }
+
     .dropdown li:hover {
       background-color: #f7f7f7;
       color: #8b0000;
     }
+
+    nav ul li:hover > .dropdown {
+      display: block;
+    }
+
     .search-bar {
       padding: 0.4rem 0.8rem;
       border: 2px solid #8b0000;
@@ -72,6 +84,7 @@
       font-size: 1rem;
       width: 180px;
     }
+
     .login-btn {
       padding: 0.4rem 1rem;
       border: 2px solid #8b0000;
@@ -82,54 +95,39 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+
     .login-btn:hover {
       background-color: #8b0000;
       color: white;
     }
-    .container {
-      padding: 2rem;
+
+    .map-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem auto;
     }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+
+    .map {
+      width: 80%;
+      max-width: 700px;
+      position: relative;
     }
-    .card {
-      background-color: #f5f3f2;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
+
+    .marker {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #8b0044;
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(139, 0, 68, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 1rem;
-    }
-    .card-content strong {
-      color: #8b0000;
-      font-size: 1.1rem;
-    }
-    .card-content h4 {
-      margin: 0.5rem 0 0.25rem;
-      font-size: 1rem;
-      font-weight: 700;
-    }
-    .card-content p {
-      margin: 0.25rem 0;
-      color: #333;
-    }
-    .card-content span {
-      display: block;
-      margin-top: 0.5rem;
-      color: #777;
-      font-style: italic;
+
+    .marker:hover {
+      transform: scale(1.2);
     }
     footer {
       background-color: #562e39;
@@ -145,71 +143,22 @@
       flex: 1 1 100%;
       margin-bottom: 1rem;
     }
-    .socials {
-      text-align: right;
-    }
+
     .socials span {
       margin-left: 10px;
       cursor: pointer;
     }
-    .pagination {
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .pagination button {
-      margin: 0 0.25rem;
-      padding: 0.5rem 1rem;
-      border: 2px solid #8b0000;
-      background: white;
-      color: #8b0000;
-      border-radius: 6px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .pagination button:hover {
-      background-color: #8b0000;
-      color: white;
-    }
-    .pagination button.active {
-      background-color: #8b0000;
-      color: white;
-      border-color: #8b0000;
-    }
-    .page {
-      display: none;
-    }
-    .page.active {
-      display: grid;
-    }
   </style>
-  <script>
-    function showPage(pageNumber) {
-      const pages = document.querySelectorAll('.page');
-      pages.forEach((page, index) => {
-        page.classList.toggle('active', index + 1 === pageNumber);
-      });
-
-      const buttons = document.querySelectorAll('.pagination button[data-page]');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.querySelector(`.pagination button[data-page='${pageNumber}']`);
-      if (activeBtn) activeBtn.classList.add('active');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      showPage(1);
-    });
-  </script>
 </head>
 <body>
   <header>
     <div style="display: flex; align-items: center; gap: 1rem;">
-      <a href="Homepage.html"><img src="images/logo.jpg" alt="Samra Logo" class="logo"></a>
+      <img src="images/logo.jpg" alt="Samra Logo" class="logo">
       <nav>
         <ul class="nav-list">
-          <li><a href="Homepage.html">Home page</a></li>
+          <li><a href="Homepage.html">Home Page</a></li>
           <li><a href="Map.html">View Map</a></li>
-          <li tabindex="0">
+          <li>
             Stories ▾
             <ul class="dropdown">
               <li><a href="popular-stories.html">Popular Stories</a></li>
@@ -221,101 +170,26 @@
       </nav>
     </div>
     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-      <input type="text" placeholder="Search for..." class="search-bar">
-      <a href="creator-login.html"><button class="login-btn">Log in As Creator</button></a>
-      <a href="admin-login.html"><button class="login-btn">Log in As Admin</button></a>
+      <input type="text" placeholder="Search stories..." class="search-bar">
+      <a href="creator-login.html">
+        <button class="login-btn">Log in As Creator</button>
+      </a>
+      <a href="admin-login.html">
+        <button class="login-btn">Log in As Admin</button>
+      </a>
     </div>
   </header>
 
-  <div class="container">
-    <h2>Riyadh Library</h2>
-    <div class="cards page active">
-      <!-- Page 1 Cards -->
-      <div class="card">
-        <img src="images/story1.jpg" alt="Fiction">
-        <div class="card-content">
-          <strong>Fiction</strong>
-          <h4>The Guardian of Desert</h4>
-          <p>In the heart of the vast desert...</p>
-          <span>Khaled Mubarak<br>Writer</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story2.jpg" alt="Story">
-        <div class="card-content">
-          <strong>Storytelling Event</strong>
-          <h4>Seven Lost Pearls of the Arabian Gulf</h4>
-          <p>Explore the magic of Saudi folklore...</p>
-          <span>Omar Al-Faris<br>Host</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story3.jpg" alt="Historical">
-        <div class="card-content">
-          <strong>Historical Narratives</strong>
-          <h4>The Secrets of Al-Ula: Echoes from the Past</h4>
-          <p>Discover the tale of Ubar...</p>
-          <span>Amal Al-Faris<br>Writer</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story4.jpg" alt="Workshop">
-        <div class="card-content">
-          <strong>Cultural Workshop</strong>
-          <h4>The Shepherd’s Journey</h4>
-          <p>Learn how to document folklore and traditions...</p>
-          <span>Dr. Aisha AlMutairi<br>Host</span>
-        </div>
-      </div>
-    </div>
-    <div class="cards page">
-      <!-- Page 2 Cards -->
-      <div class="card">
-        <img src="images/story5.jpg" alt="Tradition">
-        <div class="card-content">
-          <strong>Culture</strong>
-          <h4>Woven Stories of the Najd</h4>
-          <p>Traditions passed through generations...</p>
-          <span>Layla Al-Najdi<br>Archivist</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story6.jpg" alt="History">
-        <div class="card-content">
-          <strong>Historical Narratives</strong>
-          <h4>Kingdom’s Rise: A Historical Timeline</h4>
-          <p>Key milestones in Saudi Arabia’s unification...</p>
-          <span>Faisal Al-Turki<br>Historian</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story7.jpg" alt="Youth">
-        <div class="card-content">
-          <strong>Personal Stories</strong>
-          <h4>Growing up in Riyadh</h4>
-          <p>Insights from a youth in the capital city...</p>
-          <span>Reem Al-Riyadhi<br>Student</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story8.jpg" alt="Festival">
-        <div class="card-content">
-          <strong>Events</strong>
-          <h4>Janadriyah: A Festival of Culture</h4>
-          <p>Explore the celebration of Saudi identity...</p>
-          <span>Omar Al-Saif<br>Reporter</span>
-        </div>
-      </div>
-    </div>
-    <div class="pagination">
-      <button onclick="showPage(1)">&lt; Previous</button>
-      <button data-page="1" onclick="showPage(1)">1</button>
-      <button data-page="2" onclick="showPage(2)" class="active">2</button>
-      <button disabled>Next &gt;</button>
-    </div>
+  <div class="map-container">
+    <img src="images/saudi-map.png" alt="Map of Saudi Arabia" class="map">
+    <div class="marker" style="top: 45%; left: 40%;"></div>
+    <div class="marker" style="top: 58%; left: 52%;"></div>
+    <div class="marker" style="top: 68%; left: 45%;"></div>
+    <div class="marker" style="top: 77%; left: 65%;"></div>
   </div>
 
   <footer>
+    
     <div>Samra &copy; 2025. All rights reserved.</div>
     <div class="socials">
       <span>✉</span>
