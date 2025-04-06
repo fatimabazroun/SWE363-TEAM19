@@ -109,8 +109,12 @@
     footer {
       background-color: #562e39;
       color: white;
-      text-align: right;
       padding: 1rem 2rem;
+      text-align: center;
+    }
+    .socials {
+      text-align: right;
+      margin-top: 1rem;
     }
     .socials span {
       margin-left: 10px;
@@ -123,19 +127,52 @@
     .pagination button {
       margin: 0 0.25rem;
       padding: 0.5rem 1rem;
+      border: 2px solid #8b0000;
+      background: white;
+      color: #8b0000;
+      border-radius: 6px;
+      font-weight: 500;
       cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .pagination button:hover {
+      background-color: #8b0000;
+      color: white;
     }
     .pagination button.active {
-      background-color: #8bafff;
+      background-color: #8b0000;
+      color: white;
+      border-color: #8b0000;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: grid;
     }
   </style>
+  <script>
+    function showPage(pageNumber) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach((page, index) => {
+        page.classList.toggle('active', index + 1 === pageNumber);
+      });
+
+      const buttons = document.querySelectorAll('.pagination button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.pagination button[data-page='${pageNumber}']`);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage(1);
+    });
+  </script>
 </head>
 <body>
   <header>
     <div style="display: flex; align-items: center; gap: 1rem;">
-      <img src="images/logo.jpg" alt="Samra Logo" class="logo">
+      <a href="Homepage.html"><img src="images/logo.jpg" alt="Samra Logo" class="logo"></a>
       <nav>
         <ul class="nav-list">
           <li><a href="Homepage.html">Home page</a></li>
@@ -153,9 +190,10 @@
 
   <div class="container">
     <h2>Riyadh Library</h2>
-    <div class="cards">
+    <div class="cards page active">
+      <!-- Page 1 Cards -->
       <div class="card">
-        <img src="images/desert.jpg" alt="Desert">
+        <img src="images/story1.jpg" alt="Fiction">
         <div class="card-content">
           <strong>Fiction</strong>
           <h4>The Guardian of Desert</h4>
@@ -163,17 +201,83 @@
           <span>Khaled Mubarak<br>Writer</span>
         </div>
       </div>
-      <!-- You can add more cards following the same structure -->
+      <div class="card">
+        <img src="images/story2.jpg" alt="Story">
+        <div class="card-content">
+          <strong>Storytelling Event</strong>
+          <h4>Seven Lost Pearls of the Arabian Gulf</h4>
+          <p>Explore the magic of Saudi folklore...</p>
+          <span>Omar Al-Faris<br>Host</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story3.jpg" alt="Historical">
+        <div class="card-content">
+          <strong>Historical Narratives</strong>
+          <h4>The Secrets of Al-Ula: Echoes from the Past</h4>
+          <p>Discover the tale of Ubar...</p>
+          <span>Amal Al-Faris<br>Writer</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story4.jpg" alt="Workshop">
+        <div class="card-content">
+          <strong>Cultural Workshop</strong>
+          <h4>The Shepherd’s Journey</h4>
+          <p>Learn how to document folklore and traditions...</p>
+          <span>Dr. Aisha AlMutairi<br>Host</span>
+        </div>
+      </div>
+    </div>
+    <div class="cards page">
+      <!-- Page 2 Cards -->
+      <div class="card">
+        <img src="images/story5.jpg" alt="Tradition">
+        <div class="card-content">
+          <strong>Culture</strong>
+          <h4>Woven Stories of the Najd</h4>
+          <p>Traditions passed through generations...</p>
+          <span>Layla Al-Najdi<br>Archivist</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story6.jpg" alt="History">
+        <div class="card-content">
+          <strong>Historical Narratives</strong>
+          <h4>Kingdom’s Rise: A Historical Timeline</h4>
+          <p>Key milestones in Saudi Arabia’s unification...</p>
+          <span>Faisal Al-Turki<br>Historian</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story7.jpg" alt="Youth">
+        <div class="card-content">
+          <strong>Personal Stories</strong>
+          <h4>Growing up in Riyadh</h4>
+          <p>Insights from a youth in the capital city...</p>
+          <span>Reem Al-Riyadhi<br>Student</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story8.jpg" alt="Festival">
+        <div class="card-content">
+          <strong>Events</strong>
+          <h4>Janadriyah: A Festival of Culture</h4>
+          <p>Explore the celebration of Saudi identity...</p>
+          <span>Omar Al-Saif<br>Reporter</span>
+        </div>
+      </div>
     </div>
     <div class="pagination">
-      <button>&lt; Previous</button>
-      <button class="active">1</button>
-      <button>2</button>
-      <button>Next &gt;</button>
+      <button onclick="showPage(1)">&lt; Previous</button>
+      <button data-page="1" onclick="showPage(1)">1</button>
+      <button data-page="2" onclick="showPage(2)" class="active">2</button>
+      <button disabled>Next &gt;</button>
     </div>
   </div>
 
   <footer>
+    <div>Samra &copy; 2025. All rights reserved.</div>
     <div class="socials">
       <span>✉</span>
       <span>📷</span>
