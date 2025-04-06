@@ -1,34 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Popular Stories - Samra</title>
   <style>
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .search-bar, .login-btn {
-        width: 100%;
-      }
-      .container {
-        padding: 1rem;
-      }
-      footer {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-
-    html, body {
+    body, html {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -71,8 +48,7 @@
       color: black;
     }
 
-    nav ul li:hover,
-    nav ul li:hover > a {
+    nav ul li:hover, nav ul li:hover > a {
       color: #8b0000;
     }
 
@@ -82,9 +58,9 @@
       left: 0;
       background: white;
       border: 1px solid #ccc;
-      list-style: none;
       padding: 0;
       margin: 0;
+      list-style: none;
       display: none;
       min-width: 150px;
       z-index: 1000;
@@ -97,7 +73,6 @@
     .dropdown li {
       padding: 0.5rem 1rem;
       cursor: pointer;
-      white-space: nowrap;
     }
 
     .dropdown li:hover {
@@ -137,7 +112,7 @@
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .card {
@@ -185,6 +160,23 @@
       font-style: italic;
     }
 
+    .join-btn {
+      margin-top: 0.75rem;
+      padding: 0.4rem 1rem;
+      background: transparent;
+      color: #8b0000;
+      border: 2px solid #8b0000;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .join-btn:hover {
+      background: #8b0000;
+      color: white;
+    }
+
     footer {
       background-color: #562e39;
       color: white;
@@ -204,6 +196,32 @@
     .socials span {
       margin-left: 10px;
       cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .search-bar,
+      .login-btn {
+        width: 100%;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
+      footer {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -236,79 +254,36 @@
   <div class="container">
     <h2>Popular Stories</h2>
     <div class="cards">
-      <!-- All stories in one section -->
+      <!-- Sample Event Card with Join -->
+      <div class="card">
+        <img src="images/story2.jpg" alt="Storytelling Event">
+        <div class="card-content">
+          <strong>Storytelling Event</strong>
+          <h4>Explore the magic of Saudi folklore...</h4>
+          <span>Omar Al-Faris<br><i>Host</i></span>
+          <button class="join-btn" onclick="toggleJoin(this)">Join</button>
+        </div>
+      </div>
+
+      <!-- Add more cards below as needed -->
       <div class="card">
         <img src="images/story1.jpg" alt="Fiction">
         <div class="card-content">
           <strong>Fiction</strong>
-          <h4>The Desert’s Echo</h4>
-          <p>A timeless tale from Najd’s sands...</p>
-          <span>Salem Al-Fahad<br>Storyteller</span>
+          <h4>The Guardian of the Desert</h4>
+          <span>Khaled Mubarak<br><i>Writer</i></span>
         </div>
       </div>
+
       <div class="card">
-        <img src="images/story2.jpg" alt="Folklore">
+        <img src="images/story3.jpg" alt="History">
         <div class="card-content">
-          <strong>Folklore</strong>
-          <h4>Moonlit Myths</h4>
-          <p>Stories told under starlit skies...</p>
-          <span>Maha Al-Nasser<br>Writer</span>
+          <strong>Historical Narratives</strong>
+          <h4>The Secrets of Al-Ula</h4>
+          <span>Amal Al-Faris<br><i>Writer</i></span>
         </div>
       </div>
-      <div class="card">
-        <img src="images/story3.jpg" alt="Event">
-        <div class="card-content">
-          <strong>Event</strong>
-          <h4>Annual Bedouin Camp</h4>
-          <p>Live storytelling in the open desert...</p>
-          <span>Abdullah Al-Ahmari<br>Event Host</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story4.jpg" alt="Memoir">
-        <div class="card-content">
-          <strong>Memoir</strong>
-          <h4>My Grandmother’s Tales</h4>
-          <p>Oral stories passed from generations...</p>
-          <span>Hessa Al-Dosari<br>Memoirist</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story5.jpg" alt="Heritage">
-        <div class="card-content">
-          <strong>Heritage</strong>
-          <h4>Whispers of the Past</h4>
-          <p>Legends that shaped our identity...</p>
-          <span>Sara Al-Harbi<br>Historian</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story6.jpg" alt="History">
-        <div class="card-content">
-          <strong>History</strong>
-          <h4>The Camel Caravan Legacy</h4>
-          <p>How trade routes shaped stories...</p>
-          <span>Rami Al-Ruwais<br>Researcher</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story7.jpg" alt="Innovation">
-        <div class="card-content">
-          <strong>Innovation</strong>
-          <h4>Digital Story Vault</h4>
-          <p>Modernizing preservation efforts...</p>
-          <span>Nawal Al-Qahtani<br>Technologist</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/story8.jpg" alt="Art">
-        <div class="card-content">
-          <strong>Art</strong>
-          <h4>The Painted Past</h4>
-          <p>Illustrations inspired by oral tales...</p>
-          <span>Hind Al-Zahrani<br>Artist</span>
-        </div>
-      </div>
+
     </div>
   </div>
 
@@ -320,5 +295,19 @@
       <span>in</span>
     </div>
   </footer>
+
+  <script>
+    function toggleJoin(button) {
+      if (button.innerText === 'Join') {
+        button.innerText = 'Joined';
+        button.style.backgroundColor = '#8b0000';
+        button.style.color = 'white';
+      } else {
+        button.innerText = 'Join';
+        button.style.backgroundColor = 'transparent';
+        button.style.color = '#8b0000';
+      }
+    }
+  </script>
 </body>
 </html>
