@@ -344,8 +344,18 @@
     </div>
     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
         <input type="text" placeholder="Search stories..." class="search-bar">
-        <button class="login-btn">Log in As Creator</button>
-        <button class="login-btn">Log in As Admin</button>
+        <a href="creator-login.html">
+            <button style="border: 2px solid #8b0000; color: #8b0000; font-weight: bold; padding: 0.5rem 1rem; margin-right: 10px; background: none; border-radius: 6px; cursor: pointer;">
+              Log in As Creator
+            </button>
+          </a>
+          
+          <a href="admin-login.html">
+            <button style="border: 2px solid #8b0000; color: #8b0000; font-weight: bold; padding: 0.5rem 1rem; background: none; border-radius: 6px; cursor: pointer;">
+              Log in As Admin
+            </button>
+          </a>
+          
       </div>
       
   </header>
