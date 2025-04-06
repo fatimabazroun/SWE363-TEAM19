@@ -129,12 +129,19 @@
     .marker:hover {
       transform: scale(1.2);
     }
-
     footer {
       background-color: #562e39;
       color: white;
-      text-align: right;
-      padding: 1rem 2rem;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .footer-text {
+      text-align: center;
+      flex: 1 1 100%;
+      margin-bottom: 1rem;
     }
 
     .socials span {
@@ -154,9 +161,9 @@
           <li>
             Stories ▾
             <ul class="dropdown">
-              <li>Popular Stories</li>
-              <li>Riyadh</li>
-              <li>Makkah</li>
+              <li><a href="popular-stories.html">Popular Stories</a></li>
+              <li><a href="riyadh-library.html">Riyadh Library</a></li>
+              <li><a href="dhahran-library.html">Dhahran Library</a></li>
             </ul>
           </li>
         </ul>
