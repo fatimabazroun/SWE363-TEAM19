@@ -222,16 +222,33 @@
     }
 
     .pagination {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
       margin: 2rem 0;
     }
 
     .pagination button {
-      margin: 0 0.25rem;
-      padding: 0.5rem 1rem;
       border: 1px solid #ccc;
-      background: white;
+      background-color: white;
+      color: #333;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pagination button:hover {
+      background-color: #f0f0f0;
+    }
+
+    .pagination .active {
+      background-color: #cce1ff;
+      border-color: #cce1ff;
+      color: black;
+      font-weight: 600;
     }
 
     footer {
@@ -393,10 +410,10 @@
   </section>
 
   <div class="pagination">
-    <button>&lt; Previous</button>
-    <button>1</button>
-    <button>2</button>
-    <button>Next &gt;</button>
+    <button class="prev">&lt; Previous</button>
+    <button class="page active">1</button>
+    <button class="page">2</button>
+    <button class="next">Next &gt;</button>
   </div>
 
   <footer>
@@ -419,14 +436,22 @@
       }
     });
 
-    // Toggle join/joined
     document.addEventListener('DOMContentLoaded', () => {
+      // Toggle Join button
       const joinButtons = document.querySelectorAll('.card-content button');
-
       joinButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           btn.classList.toggle('joined');
           btn.textContent = btn.classList.contains('joined') ? 'Joined' : 'Join';
+        });
+      });
+
+      // Toggle active pagination
+      const pageButtons = document.querySelectorAll('.pagination .page');
+      pageButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelector('.pagination .active')?.classList.remove('active');
+          btn.classList.add('active');
         });
       });
     });
