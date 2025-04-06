@@ -2,19 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Samara</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samra</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+     @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
     }
+
+    header nav ul {
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .hero {
+      flex-direction: column;
+      text-align: center !important;
+    }
+
+    .hero h1 {
+      font-size: 1.5rem !important;
+    }
+
+    .hero > div {
+      width: 100%;
+    }
+
+    .hero-button {
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .cards {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card {
+      width: 90%;
+    }
+
+    .pagination {
+      flex-wrap: wrap;
+    }
+  }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fdf8f3;
-      color: #3a1d1d;
+      background: #fdf8f3;
+      margin: 0;
+      padding: 0;
     }
 
     header {
@@ -23,106 +62,64 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       border-bottom: 2px solid #e0c6b5;
     }
 
-    .logo img {
-      height: 50px;
+    .logo {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: #8b0000;
     }
 
     nav ul {
       list-style: none;
       display: flex;
       gap: 1.5rem;
-      flex-wrap: wrap;
-      position: relative;
+      margin: 0;
+      padding: 0;
     }
 
     nav ul li {
-      position: relative;
-      padding: 0.5rem 1rem;
-      transition: color 0.3s ease;
       cursor: pointer;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     nav ul li:hover {
       color: #8b0000;
     }
 
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 2.5rem;
-      left: 0;
-      background: white;
-      border: 1px solid #ddd;
-      list-style: none;
-      padding: 0.5rem 0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 100;
-      min-width: 180px;
-    }
+    .hero-button {
+    margin: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #8b0000;
+    background: white;
+    color: #8b0000;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-    .dropdown-menu li {
-      padding: 0.5rem 1rem;
-      white-space: nowrap;
-    }
-
-    .dropdown-menu li:hover {
-      background-color: #f8e8e8;
-      color: #8b0000;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .buttons button {
-      padding: 0.5rem 1rem;
-      border: 1px solid #8b0000;
-      background: white;
-      color: #8b0000;
-      cursor: pointer;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .buttons button:hover {
-      background-color: #8b0000;
-      color: white;
-    }
+  .hero-button:hover {
+    background-color: #8b0000;
+    color: white;
+  }
 
     .hero {
       background: #fff;
       padding: 3rem 2rem;
+      text-align: center;
     }
 
-    .hero-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-text {
-      flex: 1 1 50%;
-    }
-
-    .hero-text h1 {
+    .hero h1 {
       color: #8b0000;
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
 
     .hero-buttons button {
-      margin-right: 1rem;
+      margin: 0.5rem;
       padding: 0.75rem 1.5rem;
       background-color: transparent;
       border: 2px solid #8b0000;
@@ -136,16 +133,6 @@
     .hero-buttons button:hover {
       background-color: #8b0000;
       color: white;
-    }
-
-    .hero-image {
-      flex: 1 1 45%;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: auto;
-      max-width: 500px;
     }
 
     .sub-hero {
@@ -250,130 +237,118 @@
       color: black;
       font-weight: 600;
     }
+    .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
 
-    footer {
-      background: #4b2c32;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      position: relative;
-    }
+  .nav-list li {
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+  }
 
-    .footer-icons {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-    }
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    min-width: 150px;
+    z-index: 1000;
+  }
 
-    .footer-icons span {
-      margin-left: 1rem;
-      cursor: pointer;
-    }
+  .dropdown li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
 
-    /* Responsive Styles */
-    @media (max-width: 1024px) {
-      .cards {
-        justify-content: center;
-      }
+  .dropdown li:hover {
+    background-color: #f7f7f7;
+    color: #8b0000;
+  }
 
-      .card {
-        width: 45%;
-      }
-    }
+  .nav-list li:hover > .dropdown {
+    display: block;
+  }
 
-    @media (max-width: 768px) {
-      .hero-content {
-        flex-direction: column;
-        text-align: center;
-      }
+  .login-btn {
+    padding: 0.4rem 1rem;
+    border: 2px solid #8b0000;
+    background: white;
+    color: #8b0000;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-      .hero-text, .hero-image {
-        flex: 1 1 100%;
-      }
-
-      nav ul {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .card {
-        width: 80%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-text h1 {
-        font-size: 1.3rem;
-      }
-
-      .hero-buttons button {
-        width: 100%;
-        margin-bottom: 0.5rem;
-      }
-
-      .card {
-        width: 100%;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-    }
+  .login-btn:hover {
+    background-color: #8b0000;
+    color: white;
+  }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="images/logo.jpg" alt="Samara Logo">
+    
+<header style="border-bottom: 2px solid #e0c6b5; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: white;">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <img src="images/logo.jpg" alt="Samra Logo" style="height: 40px;">
+      <nav>
+        <ul class="nav-list">
+          <li>Home Page</li>
+          <li>View Map</li>
+          <li>
+            Stories ▾
+            <ul class="dropdown">
+              <li>Popular Stories</li>
+              <li>Riyadh</li>
+              <li>Makkah</li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul>
-        <li>Home page</li>
-        <li>View Map</li>
-        <li class="dropdown-toggle" onclick="toggleDropdown()">Stories ▾
-          <ul class="dropdown-menu" id="dropdown">
-            <li>Popular Stories</li>
-            <li>Riyadh</li>
-            <li>Eastern Province</li>
-            <li>Makkah</li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <div class="buttons">
-      <button>Log in As Creator</button>
-      <button>Log in As Admin</button>
+    <div style="display: flex; gap: 0.5rem;">
+      <button class="login-btn">Log in As Creator</button>
+      <button class="login-btn">Log in As Admin</button>
     </div>
   </header>
+      
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>JOIN OUR JOURNEY TO PRESERVE SAUDI ARABIA’S HERITAGE, ONE STORY AT A TIME.</h1>
-        <div class="hero-buttons">
-          <button>Start Reading</button>
-          <button>Start Writing</button>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img src="images/transfer-files-concept-landing-page.png" alt="Hero Illustration">
+  <!-- Hero Section -->
+ <section class="hero" style="display: flex; justify-content: space-between; align-items: center; padding: 4rem 2rem; background-color: #f9f9f9; flex-wrap: wrap;">
+    <div style="flex: 1;">
+      <h1 style="color: #8b0000; font-size: 2rem; margin-bottom: 1rem;">
+        JOIN OUR JOURNEY TO PRESERVE SAUDI ARABIA’S HERITAGE, ONE STORY AT A TIME.
+      </h1>
+      <div>
+        <button class="hero-button">Start Reading</button>
+        <button class="hero-button">Start Writing</button>
       </div>
     </div>
+    <div style="flex: 1; text-align: right;">
+      <img src="images/transfer-files-concept-landing-page.png" alt="Illustration" style="max-width: 100%; height: auto;">
+    </div>
   </section>
-
+  
+  <!-- Sub Hero Description -->
   <section class="sub-hero">
     Discover stories inspired by Saudi folklore, history, and traditions. Connect with the Kingdom’s rich heritage through community-driven storytelling and cultural events.
   </section>
 
-  <section class="cards">
-    <div class="card">
+  <!-- Cards & Pagination would go here (you can paste your existing one below this) -->
+<section class="cards" id="card-container">
+    <!-- Page 1 -->
+    <div class="card page-1">
       <img src="images/Gobi-Desert-scaled-1-768x488.jpg" alt="Desert">
       <div class="card-content">
         <h4>Fiction</h4>
@@ -381,7 +356,7 @@
         <p class="author">Khaled Mubarak<br><em>Writer</em></p>
       </div>
     </div>
-    <div class="card">
+    <div class="card page-1">
       <img src="images/1-6.webp" alt="Storytelling Event">
       <div class="card-content">
         <h4>Storytelling Event</h4>
@@ -390,7 +365,7 @@
         <button>Join</button>
       </div>
     </div>
-    <div class="card">
+    <div class="card page-1">
       <img src="images/869351.jpg" alt="Ubar">
       <div class="card-content">
         <h4>Historical Narratives</h4>
@@ -398,7 +373,7 @@
         <p class="author">Amal Al-Faris<br><em>Writer</em></p>
       </div>
     </div>
-    <div class="card">
+    <div class="card page-1">
       <img src="images/DSC01793-copy.jpg" alt="Workshop">
       <div class="card-content">
         <h4>Cultural Workshop</h4>
@@ -407,54 +382,108 @@
         <button>Join</button>
       </div>
     </div>
+  
+    <!-- Page 2 -->
+    <div class="card page-2" style="display: none;">
+      <img src="images/sample1.jpg" alt="Sample 1">
+      <div class="card-content">
+        <h4>Music Legends</h4>
+        <p><strong>The Oud Masters</strong><br>How traditional oud music shaped Saudi culture...</p>
+        <p class="author">Salem Al-Ghamdi<br><em>Musician</em></p>
+      </div>
+    </div>
+    <div class="card page-2" style="display: none;">
+      <img src="images/sample2.jpg" alt="Sample 2">
+      <div class="card-content">
+        <h4>Art & Heritage</h4>
+        <p>Painting the stories of the desert through color and canvas...</p>
+        <p class="author">Laila Al-Harbi<br><em>Artist</em></p>
+        <button>Join</button>
+      </div>
+    </div>
+    <div class="card page-2" style="display: none;">
+      <img src="images/sample3.jpg" alt="Sample 3">
+      <div class="card-content">
+        <h4>Nomadic Wisdom</h4>
+        <p><strong>Life of the Bedouins</strong><br>Exploring the history of desert nomads...</p>
+        <p class="author">Rashid Al-Qahtani<br><em>Historian</em></p>
+      </div>
+    </div>
+    <div class="card page-2" style="display: none;">
+      <img src="images/sample4.jpg" alt="Sample 4">
+      <div class="card-content">
+        <h4>Food Stories</h4>
+        <p>Discover the flavors of traditional Saudi dishes...</p>
+        <p class="author">Noura Al-Salem<br><em>Chef</em></p>
+        <button>Join</button>
+      </div>
+    </div>
   </section>
-
+  
+  <!-- Pagination Controls -->
   <div class="pagination">
     <button class="prev">&lt; Previous</button>
-    <button class="page active">1</button>
-    <button class="page">2</button>
+    <button class="page active" data-page="1">1</button>
+    <button class="page" data-page="2">2</button>
     <button class="next">Next &gt;</button>
   </div>
-
-  <footer>
-    Samara@2025. All rights reserved.
-    <div class="footer-icons">
-      <span>X</span>
-      <span>in</span>
-    </div>
-  </footer>
-
+  
+  <!-- JavaScript -->
   <script>
-    function toggleDropdown() {
-      const dropdown = document.getElementById("dropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    window.addEventListener('click', function(e) {
-      if (!e.target.closest('.dropdown-toggle')) {
-        document.getElementById("dropdown").style.display = "none";
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Toggle Join button
-      const joinButtons = document.querySelectorAll('.card-content button');
-      joinButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.classList.toggle('joined');
-          btn.textContent = btn.classList.contains('joined') ? 'Joined' : 'Join';
+    document.addEventListener("DOMContentLoaded", () => {
+      const joinButtons = document.querySelectorAll(".card-content button");
+      joinButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("joined");
+          btn.textContent = btn.classList.contains("joined") ? "Joined" : "Join";
         });
       });
-
-      // Toggle active pagination
-      const pageButtons = document.querySelectorAll('.pagination .page');
-      pageButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelector('.pagination .active')?.classList.remove('active');
-          btn.classList.add('active');
+  
+      const pageButtons = document.querySelectorAll(".pagination .page");
+      const allCards = document.querySelectorAll(".card");
+  
+      function showPage(page) {
+        allCards.forEach((card) => {
+          card.style.display = card.classList.contains(`page-${page}`) ? "block" : "none";
         });
+        pageButtons.forEach((btn) => btn.classList.remove("active"));
+        document.querySelector(`.pagination .page[data-page="${page}"]`).classList.add("active");
+      }
+  
+      pageButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const page = btn.getAttribute("data-page");
+          showPage(page);
+        });
+      });
+  
+      document.querySelector(".prev").addEventListener("click", () => {
+        const current = document.querySelector(".pagination .page.active");
+        const prev = current.previousElementSibling?.dataset?.page;
+        if (prev) showPage(prev);
+      });
+  
+      document.querySelector(".next").addEventListener("click", () => {
+        const current = document.querySelector(".pagination .page.active");
+        const next = current.nextElementSibling?.dataset?.page;
+        if (next) showPage(next);
       });
     });
   </script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const storiesItem = document.querySelector("nav ul li:nth-child(3)");
+      const dropdown = storiesItem.querySelector(".dropdown");
+  
+      storiesItem.addEventListener("mouseenter", () => {
+        dropdown.style.display = "block";
+      });
+  
+      storiesItem.addEventListener("mouseleave", () => {
+        dropdown.style.display = "none";
+      });
+    });
+  </script>
+  
 </body>
 </html>
