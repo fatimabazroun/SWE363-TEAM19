@@ -129,6 +129,7 @@
       gap: 1rem;
     }
     .card {
+        display:block;
       background-color: #f5f3f2;
       border-radius: 12px;
       overflow: hidden;
@@ -259,6 +260,22 @@
   </header>
 
   <div class="container">
+    <div style="margin-bottom: 1rem;">
+        <button id="filterToggle" style="background: none; border: none; font-weight: bold; font-size: 1rem; cursor: pointer;">
+          ▼ Filter Stories
+        </button>
+        <div id="filterPanel" style="display: none; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; background: #fff; margin-top: 0.5rem;">
+          <label><input type="checkbox" class="filter-checkbox" value="Fiction" checked> Fiction</label><br>
+          <label><input type="checkbox" class="filter-checkbox" value="Community Gathering" checked> Community Gathering</label><br>
+          <label><input type="checkbox" class="filter-checkbox" value="History" checked> History</label><br>
+          <label><input type="checkbox" class="filter-checkbox" value="Workshop" checked> Workshop</label><br>
+          <label><input type="checkbox" class="filter-checkbox" value="Art & Culture" checked> Art & Culture</label><br>
+          <label><input type="checkbox" class="filter-checkbox" value="Memoir" checked> Memoir</label><br>
+          <label><input type="checkbox" class="filter-checkbox" value="Documentary" checked> Documentary</label><br>
+          <label><input type="checkbox" class="filter-checkbox" value="Innovation" checked> Innovation</label>
+        </div>
+      </div>
+      
     <h2>Dhahran Library</h2>
     <div class="cards page active">
       <!-- Page 1 Cards -->
@@ -354,5 +371,30 @@
       <span>in</span>
     </div>
   </footer>
+  <script>
+    const toggleBtn = document.getElementById('filterToggle');
+    const panel = document.getElementById('filterPanel');
+    const checkboxes = document.querySelectorAll('.filter-checkbox');
+  
+    toggleBtn.addEventListener('click', () => {
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+      toggleBtn.innerText = panel.style.display === 'none' ? '▼ Filter Stories' : '▲ Hide Filters';
+    });
+  
+    checkboxes.forEach(box => {
+      box.addEventListener('change', () => {
+        const selected = Array.from(checkboxes)
+          .filter(cb => cb.checked)
+          .map(cb => cb.value);
+  
+        document.querySelectorAll('.card').forEach(card => {
+          const category = card.querySelector('strong')?.innerText?.trim();
+          card.style.display = selected.includes(category) ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
+  
 </body>
+
 </html>
