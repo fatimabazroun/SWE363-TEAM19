@@ -119,6 +119,9 @@
 </head>
 <body>
   <img src="images/logo.jpg" alt="Samra Logo" class="logo" />
+  <div style="text-align: center; margin-top: 1rem;">
+    <a href="Homepage.html" style="color: #8b0000; text-decoration: none; font-weight: bold;">← Back to Homepage</a>
+  </div>
   <div class="login-container">
     <h2>Welcome Creator</h2>
     <p>Please log in to continue sharing stories</p>
@@ -139,8 +142,11 @@
 
     <button class="btn">Log In</button>
 
-    <div class="bottom-link">Don't have an account? <a href="#">Sign Up</a></div>
-  </div>
+    <div class="bottom-link">
+        Don't have an account? <a href="#">Sign Up</a><br />
+        <a href="homepage.html" style="color: #8b0000; text-decoration: none;">← Back to Homepage</a>
+      </div>
+      
 
   <script>
     function togglePassword(id, toggleEl) {
