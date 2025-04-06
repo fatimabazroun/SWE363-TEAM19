@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Popular Stories - Samra</title>
+  <style>
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .search-bar, .login-btn {
+        width: 100%;
+      }
+      .container {
+        padding: 1rem;
+      }
+      footer {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8f3;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e0c6b5;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      height: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      position: relative;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: black;
+    }
+
+    nav ul li:hover,
+    nav ul li:hover > a {
+      color: #8b0000;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .nav-list li:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown li {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .dropdown li:hover {
+      background-color: #f7f7f7;
+      color: #8b0000;
+    }
+
+    .search-bar {
+      padding: 0.4rem 0.8rem;
+      border: 2px solid #8b0000;
+      border-radius: 5px;
+      font-size: 1rem;
+      width: 180px;
+    }
+
+    .login-btn {
+      padding: 0.4rem 1rem;
+      border: 2px solid #8b0000;
+      background: white;
+      color: #8b0000;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #8b0000;
+      color: white;
+    }
+
+    .container {
+      padding: 2rem;
+      flex: 1;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background-color: #f5f3f2;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .card-content strong {
+      color: #8b0000;
+      font-size: 1.1rem;
+    }
+
+    .card-content h4 {
+      margin: 0.5rem 0 0.25rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .card-content p {
+      margin: 0.25rem 0;
+      color: #333;
+    }
+
+    .card-content span {
+      display: block;
+      margin-top: 0.5rem;
+      color: #777;
+      font-style: italic;
+    }
+
+    footer {
+      background-color: #562e39;
+      color: white;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-text {
+      text-align: center;
+      flex: 1 1 100%;
+      margin-bottom: 1rem;
+    }
+
+    .socials span {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a href="Homepage.html"><img src="images/logo.jpg" alt="Samra Logo" class="logo"></a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="Homepage.html">Home page</a></li>
+          <li><a href="Map.html">View Map</a></li>
+          <li tabindex="0">
+            Stories ▾
+            <ul class="dropdown">
+              <li><a href="popular-stories.html">Popular Stories</a></li>
+              <li><a href="riyadh-library.html">Riyadh Library</a></li>
+              <li><a href="dhahran-library.html">Dhahran Library</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+      <input type="text" placeholder="Search for..." class="search-bar">
+      <a href="creator-login.html"><button class="login-btn">Log in As Creator</button></a>
+      <a href="admin-login.html"><button class="login-btn">Log in As Admin</button></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Popular Stories</h2>
+    <div class="cards">
+      <!-- All stories in one section -->
+      <div class="card">
+        <img src="images/story1.jpg" alt="Fiction">
+        <div class="card-content">
+          <strong>Fiction</strong>
+          <h4>The Desert’s Echo</h4>
+          <p>A timeless tale from Najd’s sands...</p>
+          <span>Salem Al-Fahad<br>Storyteller</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story2.jpg" alt="Folklore">
+        <div class="card-content">
+          <strong>Folklore</strong>
+          <h4>Moonlit Myths</h4>
+          <p>Stories told under starlit skies...</p>
+          <span>Maha Al-Nasser<br>Writer</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story3.jpg" alt="Event">
+        <div class="card-content">
+          <strong>Event</strong>
+          <h4>Annual Bedouin Camp</h4>
+          <p>Live storytelling in the open desert...</p>
+          <span>Abdullah Al-Ahmari<br>Event Host</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story4.jpg" alt="Memoir">
+        <div class="card-content">
+          <strong>Memoir</strong>
+          <h4>My Grandmother’s Tales</h4>
+          <p>Oral stories passed from generations...</p>
+          <span>Hessa Al-Dosari<br>Memoirist</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story5.jpg" alt="Heritage">
+        <div class="card-content">
+          <strong>Heritage</strong>
+          <h4>Whispers of the Past</h4>
+          <p>Legends that shaped our identity...</p>
+          <span>Sara Al-Harbi<br>Historian</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story6.jpg" alt="History">
+        <div class="card-content">
+          <strong>History</strong>
+          <h4>The Camel Caravan Legacy</h4>
+          <p>How trade routes shaped stories...</p>
+          <span>Rami Al-Ruwais<br>Researcher</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story7.jpg" alt="Innovation">
+        <div class="card-content">
+          <strong>Innovation</strong>
+          <h4>Digital Story Vault</h4>
+          <p>Modernizing preservation efforts...</p>
+          <span>Nawal Al-Qahtani<br>Technologist</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/story8.jpg" alt="Art">
+        <div class="card-content">
+          <strong>Art</strong>
+          <h4>The Painted Past</h4>
+          <p>Illustrations inspired by oral tales...</p>
+          <span>Hind Al-Zahrani<br>Artist</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-text">Samra &copy; 2025. All rights reserved.</div>
+    <div class="socials">
+      <span>✉</span>
+      <span>📷</span>
+      <span>in</span>
+    </div>
+  </footer>
+</body>
+</html>
