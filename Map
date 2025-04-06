@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samra - Map</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+    }
 
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: white;
+      border-bottom: 2px solid #e5cfc0;
+    }
+
+    .logo {
+      height: 40px;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .map-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem auto;
+    }
+
+    .map {
+      width: 80%;
+      max-width: 700px;
+      position: relative;
+    }
+
+    .marker {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background-color: #8b0044;
+      border-radius: 50%;
+      border: 3px solid white;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #562e39;
+      color: white;
+      text-align: right;
+      padding: 1rem 2rem;
+    }
+
+    .socials span {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <header style="border-bottom: 2px solid #e0c6b5; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: white;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <img src="images/logo.jpg" alt="Samra Logo" style="height: 40px;">
+          <nav>
+            <ul class="nav-list">
+              <li>Home Page</li>
+              <li>View Map</li>
+              <li>
+                Stories ▾
+                <ul class="dropdown">
+                  <li>Popular Stories</li>
+                  <li>Riyadh</li>
+                  <li>Makkah</li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <input type="text" placeholder="Search stories..." class="search-bar">
+            <a href="creator-login.html">
+                <button style="border: 2px solid #8b0000; color: #8b0000; font-weight: bold; padding: 0.5rem 1rem; margin-right: 10px; background: none; border-radius: 6px; cursor: pointer;">
+                  Log in As Creator
+                </button>
+              </a>
+              
+              <a href="admin-login.html">
+                <button style="border: 2px solid #8b0000; color: #8b0000; font-weight: bold; padding: 0.5rem 1rem; background: none; border-radius: 6px; cursor: pointer;">
+                  Log in As Admin
+                </button>
+              </a>
+              
+          </div>
+          
+      </header>
+          
+      
+
+  <div class="map-container">
+    <img src="images/saudi-map.png" alt="Map of Saudi Arabia" class="map">
+    <!-- Sample fixed markers -->
+    <div class="marker" style="top: 20%; left: 45%;"></div>
+    <div class="marker" style="top: 30%; left: 60%;"></div>
+    <div class="marker" style="top: 40%; left: 35%;"></div>
+    <div class="marker" style="top: 55%; left: 50%;"></div>
+    <div class="marker" style="top: 65%; left: 40%;"></div>
+    <div class="marker" style="top: 75%; left: 60%;"></div>
+  </div>
+
+  <footer>
+    <div class="socials">
+      <span>✉</span>
+      <span>📷</span>
+      <span>in</span>
+    </div>
+  </footer>
+</body>
+</html>
