@@ -233,6 +233,32 @@
       font-weight: bold;
     }
 
+
+    .pagination {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .pagination button {
+      margin: 0 0.25rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid #8b0000;
+      background: white;
+      color: #8b0000;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .pagination button:hover {
+      background-color: #8b0000;
+      color: white;
+    }
+    .pagination button.active {
+      background-color: #8b0000;
+      color: white;
+      border-color: #8b0000;
+    }
+
     .pagination {
       display: flex;
       justify-content: center;
@@ -241,27 +267,7 @@
       margin: 2rem 0;
     }
 
-    .pagination button {
-      border: 1px solid #ccc;
-      background-color: white;
-      color: #333;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
 
-    .pagination button:hover {
-      background-color: #f0f0f0;
-    }
-
-    .pagination .active {
-      background-color: #cce1ff;
-      border-color: #cce1ff;
-      color: black;
-      font-weight: 600;
-    }
     .nav-list {
     list-style: none;
     display: flex;
@@ -320,11 +326,19 @@
     background-color: #8b0000;
     color: white;
   }
- footer {
+  footer {
       background-color: #562e39;
       color: white;
-      text-align: right;
-      padding: 1rem 2rem;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .footer-text {
+      text-align: center;
+      flex: 1 1 100%;
+      margin-bottom: 1rem;
     }
   
   </style>
@@ -338,15 +352,14 @@
         <ul class="nav-list">
             <li><a href="Homepage.html" style="text-decoration: none; color: inherit;">Home Page</a></li>
             <li><a href="Map.html" style="text-decoration: none; color: inherit;">View Map</a></li>
-
-          <li>
-            Stories ▾
-            <ul class="dropdown">
-              <li>Popular Stories</li>
-              <li>Riyadh</li>
-              <li>Makkah</li>
-            </ul>
-          </li>
+            <li>
+                Stories ▾
+                <ul class="dropdown">
+                  <li><a href="popular-stories.html">Popular Stories</a></li>
+                  <li><a href="riyadh-library.html">Riyadh Library</a></li>
+                  <li><a href="dhahran-library.html">Dhahran Library</a></li>
+                </ul>
+              </li>
         </ul>
       </nav>
     </div>
@@ -470,6 +483,8 @@
   </div>
 
   <footer>
+    <div>Samra &copy; 2025. All rights reserved.</div>
+
     <div class="socials">
       <span>✉</span>
       <span>📷</span>
