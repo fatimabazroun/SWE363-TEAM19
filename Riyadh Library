@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riyadh Library - Samra</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8f3;
+    }
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e0c6b5;
+    }
+    .logo {
+      height: 40px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      cursor: pointer;
+      position: relative;
+      font-weight: 500;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: black;
+    }
+    nav ul li:hover {
+      color: #8b0000;
+    }
+    .search-bar {
+      padding: 0.4rem 0.8rem;
+      border: 2px solid #8b0000;
+      border-radius: 5px;
+      font-size: 1rem;
+      width: 180px;
+    }
+    .login-btn {
+      padding: 0.4rem 1rem;
+      border: 2px solid #8b0000;
+      background: white;
+      color: #8b0000;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .login-btn:hover {
+      background-color: #8b0000;
+      color: white;
+    }
+    .container {
+      padding: 2rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background-color: #f5f3f2;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-content strong {
+      color: #8b0000;
+      font-size: 1.1rem;
+    }
+    .card-content h4 {
+      margin: 0.5rem 0 0.25rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .card-content p {
+      margin: 0.25rem 0;
+      color: #333;
+    }
+    .card-content span {
+      display: block;
+      margin-top: 0.5rem;
+      color: #777;
+      font-style: italic;
+    }
+    footer {
+      background-color: #562e39;
+      color: white;
+      text-align: right;
+      padding: 1rem 2rem;
+    }
+    .socials span {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .pagination {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .pagination button {
+      margin: 0 0.25rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .pagination button.active {
+      background-color: #8bafff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <img src="images/logo.jpg" alt="Samra Logo" class="logo">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="Homepage.html">Home page</a></li>
+          <li><a href="Map.html">View Map</a></li>
+          <li>Stories ▾</li>
+        </ul>
+      </nav>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+      <input type="text" placeholder="Search for..." class="search-bar">
+      <a href="creator-login.html"><button class="login-btn">Log in As Creator</button></a>
+      <a href="admin-login.html"><button class="login-btn">Log in As Admin</button></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Riyadh Library</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="images/desert.jpg" alt="Desert">
+        <div class="card-content">
+          <strong>Fiction</strong>
+          <h4>The Guardian of Desert</h4>
+          <p>In the heart of the vast desert...</p>
+          <span>Khaled Mubarak<br>Writer</span>
+        </div>
+      </div>
+      <!-- You can add more cards following the same structure -->
+    </div>
+    <div class="pagination">
+      <button>&lt; Previous</button>
+      <button class="active">1</button>
+      <button>2</button>
+      <button>Next &gt;</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="socials">
+      <span>✉</span>
+      <span>📷</span>
+      <span>in</span>
+    </div>
+  </footer>
+</body>
+</html>
