@@ -251,17 +251,22 @@
   <div class="container">
     <h2>Riyadh Library</h2>
     <div style="margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <button id="filterToggle" style="background: none; border: none; font-weight: bold; font-size: 1rem; cursor: pointer;">
           ▼ Filter Stories
         </button>
-        <div id="filterPanel" style="display: none; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; background: #fff; margin-top: 0.5rem;">
-          <label><input type="checkbox" class="filter-checkbox" value="Fiction" checked> Fiction</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Culture" checked> Culture</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Historical Narratives" checked> Historical Narratives</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Events" checked> Events</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Personal Stories" checked> Personal Stories</label>
-        </div>
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search stories..." style="background-color: #8b0000; color: white; border: 2px solid #fff; padding: 0.4rem 0.8rem; border-radius: 5px; font-size: 1rem; width: 220px;">
       </div>
+    
+      <div id="filterPanel" style="display: none; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; background: #fff; margin-top: 0.5rem;">
+        <label><input type="checkbox" class="filter-checkbox" value="Fiction" checked> Fiction</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Culture" checked> Culture</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Historical Narratives" checked> Historical Narratives</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Events" checked> Events</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Personal Stories" checked> Personal Stories</label>
+      </div>
+    </div>
+    
       
     <div class="cards page active">
       <!-- Page 1 Cards -->
@@ -341,6 +346,8 @@
         </div>
       </div>
     </div>
+    <!-- Filtered Results Container -->
+<div id="filteredResults" class="cards" style="display: none;"></div>
     <div class="pagination">
       <button onclick="showPage(1)">&lt; Previous</button>
       <button data-page="1" onclick="showPage(1)">1</button>
@@ -361,23 +368,69 @@
     const toggleBtn = document.getElementById('filterToggle');
     const panel = document.getElementById('filterPanel');
     const checkboxes = document.querySelectorAll('.filter-checkbox');
+    const searchInput = document.getElementById('searchInput');
+    const pages = document.querySelectorAll('.page');
+    const pagination = document.querySelector('.pagination');
+    const filteredResults = document.getElementById('filteredResults');
   
     toggleBtn.addEventListener('click', () => {
       panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
       toggleBtn.innerText = panel.style.display === 'none' ? '▼ Filter Stories' : '▲ Hide Filters';
     });
   
-    checkboxes.forEach(box => {
-      box.addEventListener('change', () => {
-        const selectedCategories = Array.from(checkboxes)
-          .filter(cb => cb.checked)
-          .map(cb => cb.value);
+    function applyFilters() {
+      const selectedCategories = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value.toLowerCase());
   
+      const searchText = searchInput.value.toLowerCase();
+      let isFiltering = searchText.length > 0 || selectedCategories.length < checkboxes.length;
+  
+      // Clear previous filtered results
+      filteredResults.innerHTML = '';
+  
+      if (isFiltering) {
+        // Hide paginated content
+        pages.forEach(p => p.style.display = 'none');
+        pagination.style.display = 'none';
+        filteredResults.style.display = 'grid';
+  
+        // Collect and show matching cards from all pages
         document.querySelectorAll('.card').forEach(card => {
-          const category = card.querySelector('strong')?.innerText?.trim();
-          card.style.display = selectedCategories.includes(category) ? 'block' : 'none';
+          const category = card.querySelector('strong')?.innerText?.toLowerCase() || '';
+          const title = card.querySelector('h4')?.innerText?.toLowerCase() || '';
+          const matchesCategory = selectedCategories.includes(category);
+          const matchesSearch = title.includes(searchText) || category.includes(searchText);
+  
+          if (matchesCategory && matchesSearch) {
+            const clone = card.cloneNode(true);
+            filteredResults.appendChild(clone);
+          }
         });
+      } else {
+        // Show paginated content again
+        filteredResults.style.display = 'none';
+        pages.forEach(p => p.style.display = '');
+        pagination.style.display = 'block';
+        showPage(1);
+      }
+    }
+  
+    checkboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+    searchInput.addEventListener('input', applyFilters);
+  
+    function showPage(pageNumber) {
+      pages.forEach((page, index) => {
+        page.classList.toggle('active', index + 1 === pageNumber);
       });
+  
+      document.querySelectorAll('.pagination button[data-page]').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.pagination button[data-page='${pageNumber}']`);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage(1);
     });
   </script>
   
