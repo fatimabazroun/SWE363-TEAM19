@@ -80,14 +80,6 @@
       color: #8b0000;
     }
 
-    .search-bar {
-      padding: 0.4rem 0.8rem;
-      border: 2px solid #8b0000;
-      border-radius: 5px;
-      font-size: 1rem;
-      width: 180px;
-    }
-
     .login-btn {
       padding: 0.4rem 1rem;
       border: 2px solid #8b0000;
@@ -210,7 +202,7 @@
         gap: 0.5rem;
       }
 
-      .search-bar,
+  
       .login-btn {
         width: 100%;
       }
@@ -245,7 +237,6 @@
       </nav>
     </div>
     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-      <input type="text" placeholder="Search for..." class="search-bar">
       <a href="creator-login.html"><button class="login-btn">Log in As Creator</button></a>
       <a href="admin-login.html"><button class="login-btn">Log in As Admin</button></a>
     </div>
@@ -254,37 +245,70 @@
   <div class="container">
     <h2>Popular Stories</h2>
     <div class="cards">
-      <!-- Sample Event Card with Join -->
-      <div class="card">
-        <img src="images/story2.jpg" alt="Storytelling Event">
-        <div class="card-content">
-          <strong>Storytelling Event</strong>
-          <h4>Explore the magic of Saudi folklore...</h4>
-          <span>Omar Al-Faris<br><i>Host</i></span>
-          <button class="join-btn" onclick="toggleJoin(this)">Join</button>
+        <!-- Event Card 1 -->
+        <div class="card">
+          <img src="images/story2.jpg" alt="Storytelling Event">
+          <div class="card-content">
+            <strong>Storytelling Event</strong>
+            <h4>Explore the magic of Saudi folklore...</h4>
+            <span>Omar Al-Faris<br><i>Host</i></span>
+            <button class="join-btn" onclick="toggleJoin(this)">Join</button>
+          </div>
+        </div>
+      
+        <!-- Event Card 2 -->
+        <div class="card">
+          <img src="images/event2.jpg" alt="Cultural Night">
+          <div class="card-content">
+            <strong>Community Night</strong>
+            <h4>Folklore & Music Under the Stars</h4>
+            <span>Reem Al-Najjar<br><i>Coordinator</i></span>
+            <button class="join-btn" onclick="toggleJoin(this)">Join</button>
+          </div>
+        </div>
+      
+        <!-- Event Card 3 -->
+        <div class="card">
+          <img src="images/event3.jpg" alt="Youth Stories Circle">
+          <div class="card-content">
+            <strong>Youth Stories Circle</strong>
+            <h4>Sharing Tales of Modern Identity</h4>
+            <span>Ahmed Al-Khobar<br><i>Facilitator</i></span>
+            <button class="join-btn" onclick="toggleJoin(this)">Join</button>
+          </div>
+        </div>
+      
+        <!-- Story Card 1 -->
+        <div class="card">
+          <img src="images/story1.jpg" alt="Fiction">
+          <div class="card-content">
+            <strong>Fiction</strong>
+            <h4>The Guardian of the Desert</h4>
+            <span>Khaled Mubarak<br><i>Writer</i></span>
+          </div>
+        </div>
+      
+        <!-- Story Card 2 -->
+        <div class="card">
+          <img src="images/story3.jpg" alt="History">
+          <div class="card-content">
+            <strong>Historical Narratives</strong>
+            <h4>The Secrets of Al-Ula</h4>
+            <span>Amal Al-Faris<br><i>Writer</i></span>
+          </div>
+        </div>
+      
+        <!-- Story Card 3  -->
+        <div class="card">
+          <img src="images/story4.jpg" alt="Memoir">
+          <div class="card-content">
+            <strong>Memoir</strong>
+            <h4>Echoes of My Grandmother’s Tales</h4>
+            <span>Layla Al-Ahsa<br><i>Storyteller</i></span>
+          </div>
         </div>
       </div>
-
-      <!-- Add more cards below as needed -->
-      <div class="card">
-        <img src="images/story1.jpg" alt="Fiction">
-        <div class="card-content">
-          <strong>Fiction</strong>
-          <h4>The Guardian of the Desert</h4>
-          <span>Khaled Mubarak<br><i>Writer</i></span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/story3.jpg" alt="History">
-        <div class="card-content">
-          <strong>Historical Narratives</strong>
-          <h4>The Secrets of Al-Ula</h4>
-          <span>Amal Al-Faris<br><i>Writer</i></span>
-        </div>
-      </div>
-
-    </div>
+      
   </div>
 
   <footer>
