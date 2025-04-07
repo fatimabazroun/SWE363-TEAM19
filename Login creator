@@ -55,31 +55,31 @@
     }
 
     .password-wrapper {
-      position: relative;
-      margin-bottom: 1rem;
-    }
+  position: relative;
+  margin-bottom: 1rem;
+}
 
-    .password-wrapper input {
-      width: 100%;
-      padding: 0.6rem;
-      padding-right: 4rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
+.password-wrapper input {
+  width: 100%;
+  padding: 0.6rem;
+  padding-right: 3.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
-    .show-hide {
-      position: absolute;
-      top: 50%;
-      right: 1rem;
-      transform: translateY(-50%);
-      font-size: 0.85rem;
-      cursor: pointer;
-      color: #888;
-      user-select: none;
-      background-color: white;
-      padding: 0 0.3rem;
-    }
+.show-hide {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #888;
+  background: white;
+  padding: 0 0.3rem;
+}
 
     .options {
       display: flex;
@@ -110,6 +110,19 @@
       font-size: 0.85rem;
     }
 
+    @keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s;
+}
+
+
     @media (max-width: 480px) {
       .login-container {
         margin: 2rem 1rem;
@@ -129,11 +142,12 @@
     <label>Email Address</label>
     <input type="email" placeholder="creator@samra.com" required />
 
-    <label>Password</label>
+    <label for="creatorPassword">Password</label>
     <div class="password-wrapper">
       <input type="password" id="creatorPassword" placeholder="••••••••" required />
       <span class="show-hide" onclick="togglePassword('creatorPassword', this)">Show</span>
     </div>
+    
 
     <div class="options">
       <label><input type="checkbox" /> Remember me</label>
@@ -159,20 +173,53 @@
           }
         }
       
-        document.querySelector('.btn').addEventListener('click', function (e) {
+        const loginBtn = document.querySelector('.btn');
+        const emailInput = document.querySelector('input[type="email"]');
+        const passwordInput = document.getElementById('creatorPassword');
+      
+        // Message area
+        const message = document.createElement('div');
+        message.style.marginTop = "1rem";
+        message.style.fontSize = "0.9rem";
+        message.style.textAlign = "center";
+        document.querySelector(".login-container").appendChild(message);
+      
+        loginBtn.addEventListener('click', function (e) {
           e.preventDefault();
+          const email = emailInput.value.trim();
+          const password = passwordInput.value;
       
-          const email = document.querySelector('input[type="email"]').value.trim();
-          const password = document.querySelector('#creatorPassword').value;
+          // Reset styling
+          [emailInput, passwordInput].forEach(input => {
+            input.style.borderColor = "#ccc";
+          });
+          message.innerHTML = "";
       
-          // Hardcoded credentials for demo
           if (email === "creator@samra.com" && password === "pass123") {
+            message.style.color = "green";
+            message.innerHTML = "✅ Login successful! Redirecting...";
             localStorage.setItem("isLoggedIn", "true");
             localStorage.setItem("userRole", "creator");
-            window.location.href = "Homepage.html"; // redirect after login
+            setTimeout(() => {
+              window.location.href = "Homepage.html";
+            }, 1000);
           } else {
-            alert("Invalid email or password");
+            message.style.color = "red";
+            message.innerHTML = "❌ Incorrect email or password.";
+            [emailInput, passwordInput].forEach(input => {
+              input.style.borderColor = "red";
+              input.classList.add("shake");
+            });
           }
+        });
+      
+        // Clear red borders on typing
+        [emailInput, passwordInput].forEach(input => {
+          input.addEventListener("input", () => {
+            input.style.borderColor = "#ccc";
+            input.classList.remove("shake");
+            message.innerHTML = "";
+          });
         });
       </script>
       
