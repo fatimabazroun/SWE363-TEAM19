@@ -190,6 +190,27 @@
       cursor: pointer;
     }
 
+    .search-bar {
+  padding: 0.4rem 0.8rem;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 220px;
+  background-color :#8b0000;;
+  color: white;
+}
+
+.search-bar::placeholder {
+  color: #f8dcdc; 
+}
+
+.search-bar:focus {
+  background-color: #db7979;
+  outline: none;
+}
+
+
+
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -244,6 +265,10 @@
 
   <div class="container">
     <h2>Popular Stories</h2>
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1.5rem;">
+      <input type="text" id="searchInput" class="search-bar" placeholder="Search stories...">
+    </div>
+    
     <div class="cards">
         <!-- Event Card 1 -->
         <div class="card">
@@ -332,6 +357,22 @@
         button.style.color = '#8b0000';
       }
     }
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+    const searchText = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      const title = card.querySelector('h4')?.textContent.toLowerCase();
+      const category = card.querySelector('strong')?.textContent.toLowerCase();
+      if (title.includes(searchText) || category.includes(searchText)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+
   </script>
 </body>
 </html>
