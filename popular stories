@@ -265,9 +265,17 @@
 
   <div class="container">
     <h2>Popular Stories</h2>
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 1.5rem;">
+
+    <div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+      <select id="filterType" class="search-bar" style="width: 150px;">
+        <option value="all">All</option>
+        <option value="stories">Stories</option>
+        <option value="events">Events</option>
+      </select>
       <input type="text" id="searchInput" class="search-bar" placeholder="Search stories...">
     </div>
+    
+    
     
     <div class="cards">
         <!-- Event Card 1 -->
@@ -345,34 +353,48 @@
     </div>
   </footer>
 
-  <script>
-    function toggleJoin(button) {
-      if (button.innerText === 'Join') {
-        button.innerText = 'Joined';
-        button.style.backgroundColor = '#8b0000';
-        button.style.color = 'white';
-      } else {
-        button.innerText = 'Join';
-        button.style.backgroundColor = 'transparent';
-        button.style.color = '#8b0000';
-      }
+ <script>
+  function toggleJoin(button) {
+    if (button.innerText === 'Join') {
+      button.innerText = 'Joined';
+      button.style.backgroundColor = '#8b0000';
+      button.style.color = 'white';
+    } else {
+      button.innerText = 'Join';
+      button.style.backgroundColor = 'transparent';
+      button.style.color = '#8b0000';
     }
+  }
 
-    document.getElementById('searchInput').addEventListener('input', function () {
-    const searchText = this.value.toLowerCase();
+  const searchInput = document.getElementById('searchInput');
+  const filterType = document.getElementById('filterType');
+
+  function filterCards() {
+    const searchText = searchInput.value.toLowerCase();
+    const selectedType = filterType.value;
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {
-      const title = card.querySelector('h4')?.textContent.toLowerCase();
-      const category = card.querySelector('strong')?.textContent.toLowerCase();
-      if (title.includes(searchText) || category.includes(searchText)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
+      const title = card.querySelector('h4')?.textContent.toLowerCase() || '';
+      const category = card.querySelector('strong')?.textContent.toLowerCase() || '';
 
-  </script>
+      const matchesSearch = title.includes(searchText) || category.includes(searchText);
+
+      const isStory = category.includes('fiction') || category.includes('memoir') || category.includes('historical');
+      const isEvent = category.includes('event') || category.includes('night') || category.includes('circle');
+
+      let matchesFilter = false;
+      if (selectedType === 'all') matchesFilter = true;
+      else if (selectedType === 'stories' && isStory) matchesFilter = true;
+      else if (selectedType === 'events' && isEvent) matchesFilter = true;
+
+      card.style.display = (matchesSearch && matchesFilter) ? 'block' : 'none';
+    });
+  }
+
+  searchInput.addEventListener('input', filterCards);
+  filterType.addEventListener('change', filterCards);
+</script>
+
 </body>
 </html>
