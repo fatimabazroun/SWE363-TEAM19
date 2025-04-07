@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Samra - Map</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -111,9 +115,12 @@
       width: 90%;
       max-width: 700px;
       margin: 2rem auto;
-      aspect-ratio: 4 / 3;
-      background: url('images/saudi-map.png') no-repeat center center;
-      background-size: contain;
+    }
+
+    .map {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .marker {
@@ -155,42 +162,26 @@
       cursor: pointer;
     }
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
 
-      nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
+    #container {
+    height: 500px;
+    min-width: 310px;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-      .search-bar,
-      .login-btn {
-        width: 100%;
-      }
-
-      .map-container {
-        width: 95%;
-      }
-
-      footer {
-        text-align: center;
-        flex-direction: column;
-      }
-
-      .socials {
-        margin-top: 1rem;
-      }
-    }
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+   
   </style>
 </head>
 <body>
   <header>
     <div style="display: flex; align-items: center; gap: 1rem;">
-      <img src="images/logo.jpg" alt="Samra Logo" class="logo" />
+      <img src="images/logo.jpg" alt="Samra Logo" class="logo">
       <nav>
         <ul class="nav-list">
           <li><a href="Homepage.html">Home Page</a></li>
@@ -207,19 +198,21 @@
       </nav>
     </div>
     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-      <input type="text" placeholder="Search stories..." class="search-bar" />
-      <a href="creator-login.html"><button class="login-btn">Log in As Creator</button></a>
-      <a href="admin-login.html"><button class="login-btn">Log in As Admin</button></a>
+      <input type="text" placeholder="Search stories..." class="search-bar">
+      <a href="creator-login.html">
+        <button class="login-btn">Log in As Creator</button>
+      </a>
+      <a href="admin-login.html">
+        <button class="login-btn">Log in As Admin</button>
+      </a>
     </div>
   </header>
+  >
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+ <div id="container"></div>
 
-  <div class="map-container">
-    <!-- Marker positions using percentage based on map coordinates -->
-    <div class="marker" style="top: 30%; left: 35%;"></div>
-    <div class="marker" style="top: 45%; left: 50%;"></div>
-    <div class="marker" style="top: 60%; left: 40%;"></div>
-    <div class="marker" style="top: 70%; left: 60%;"></div>
-  </div>
+ 
 
   <footer>
     <div class="footer-text">Samra &copy; 2025. All rights reserved.</div>
@@ -229,5 +222,73 @@
       <span>in</span>
     </div>
   </footer>
+
+  <script>
+    (async () => {
+      const topology = await fetch(
+        'https://code.highcharts.com/mapdata/countries/sa/sa-all.topo.json'
+      ).then(response => response.json());
+  
+      const regionLinks = {
+        'Ar Riyad': 'riyadh-library.html',
+        'Ash Sharqiyah': 'dhahran-library.html'
+      };
+  
+      Highcharts.mapChart('container', {
+        chart: {
+          map: topology
+        },
+  
+        title: {
+          text: ''
+        },
+  
+        subtitle: {
+          text: ''
+        },
+  
+        mapNavigation: {
+          enabled: false // disable zoom and navigation
+        },
+  
+        tooltip: {
+          enabled: false // remove tooltip on hover
+        },
+  
+        colorAxis: {
+          min: 0,
+          minColor: '#800000',
+          maxColor: '#800000'
+        },
+  
+        series: [{
+          data: [
+            ['sa-4293', 1], ['sa-tb', 1], ['sa-jz', 1], ['sa-nj', 1],
+            ['sa-ri', 1], ['sa-md', 1], ['sa-ha', 1], ['sa-qs', 1],
+            ['sa-hs', 1], ['sa-jf', 1], ['sa-sh', 1], ['sa-ba', 1],
+            ['sa-as', 1], ['sa-mk', 1]
+          ],
+          name: 'Regions',
+          states: {
+            hover: {
+              enabled: false // disable color change on hover
+            }
+          },
+          dataLabels: {
+            enabled: false // hide region names
+          },
+          point: {
+            events: {
+              click: function () {
+                const link = regionLinks[this.name];
+                if (link) window.location.href = link;
+              }
+            }
+          }
+        }]
+      });
+    })();
+  </script>
+  
 </body>
 </html>
