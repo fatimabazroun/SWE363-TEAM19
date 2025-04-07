@@ -510,8 +510,7 @@
         if (next) showPage(next);
       });
     });
-  </script>
-<script>
+
     document.addEventListener("DOMContentLoaded", () => {
       const storiesItem = document.querySelector("nav ul li:nth-child(3)");
       const dropdown = storiesItem.querySelector(".dropdown");
@@ -524,6 +523,26 @@
         dropdown.style.display = "none";
       });
     });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "creator") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Creator</span>
+        <button class="login-btn" onclick="logout()">Log Out</button>
+      `;
+    }
+  });
+
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userRole");
+    location.reload(); // refresh to update header
+  }
   </script>
   
 </body>
