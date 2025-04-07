@@ -162,13 +162,13 @@
       cursor: pointer;
     }
 
-
     #container {
-    height: 500px;
-    min-width: 310px;
-    max-width: 800px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: 1000px;
+  height: 600px;
+  margin: 2rem auto;
 }
+
 
 .loading {
     margin-top: 10em;
@@ -239,26 +239,21 @@
           map: topology
         },
   
-        title: {
-          text: ''
-        },
+        title: { text: 'Map of Saudi Arabia' },
+        subtitle: { text: '' },
   
-        subtitle: {
-          text: ''
-        },
+        mapNavigation: { enabled: false },
   
-        mapNavigation: {
-          enabled: false // disable zoom and navigation
-        },
+        tooltip: { enabled: false },
   
-        tooltip: {
-          enabled: false // remove tooltip on hover
-        },
+        legend: { enabled: false },
+  
+        exporting: { enabled: false },
   
         colorAxis: {
           min: 0,
-          minColor: '#800000',
-          maxColor: '#800000'
+          minColor: '#d9a6a1', // light maroon
+          maxColor: '#d9a6a1'
         },
   
         series: [{
@@ -271,11 +266,16 @@
           name: 'Regions',
           states: {
             hover: {
-              enabled: false // disable color change on hover
+              color: '#800000' // dark maroon on hover
             }
           },
           dataLabels: {
-            enabled: false // hide region names
+            enabled: true,
+            format: '{point.name}',
+            style: {
+              fontWeight: 'bold',
+              color: '#333'
+            }
           },
           point: {
             events: {
