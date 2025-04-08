@@ -363,9 +363,10 @@
         JOIN OUR JOURNEY TO PRESERVE SAUDI ARABIA’S HERITAGE, ONE STORY AT A TIME.
       </h1>
       <div>
-        <button class="hero-button">Start Reading</button>
-        <button class="hero-button">Start Writing</button>
+        <button class="hero-button" id="startReading">Start Reading</button>
+        <button class="hero-button" id="startWriting" type="button">Start Writing</button>
       </div>
+      
     </div>
     <div style="flex: 1; text-align: right;">
       <img src="images/transfer-files-concept-landing-page.png" alt="Illustration" style="max-width: 100%; height: auto;">
@@ -551,6 +552,31 @@ function logout() {
   localStorage.removeItem("userRole");
   location.reload();
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const startReading = document.getElementById("startReading");
+    const startWriting = document.getElementById("startWriting");
+
+    if (startReading) {
+      startReading.addEventListener("click", function () {
+        window.location.href = "popular-stories.html";
+      });
+    }
+
+    if (startWriting) {
+      startWriting.addEventListener("click", function () {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+        if (isLoggedIn) {
+          window.location.href = "write-story.html";
+
+        }
+          if (!isLoggedIn) {
+      alert("⚠️ You must log in to write a story.");
+    }
+      });
+    }
+  });
 
   </script>
   
