@@ -53,33 +53,32 @@
       border: 1px solid #ccc;
       border-radius: 6px;
     }
-
     .password-wrapper {
-      position: relative;
-      margin-bottom: 1rem;
-    }
+  position: relative;
+  margin-bottom: 1rem;
+}
 
-    .password-wrapper input {
-      width: 100%;
-      padding: 0.6rem;
-      padding-right: 4rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
+.password-wrapper input {
+  width: 100%;
+  padding: 0.6rem;
+  padding-right: 3.5rem; /* space for the "Show" text */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
-    .show-hide {
-      position: absolute;
-      top: 50%;
-      right: 1rem;
-      transform: translateY(-50%);
-      font-size: 0.85rem;
-      cursor: pointer;
-      color: #888;
-      user-select: none;
-      background-color: white;
-      padding: 0 0.3rem;
-    }
+.show-hide {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #888;
+  background: white;
+  padding: 0 0.3rem;
+}
 
     .options {
       display: flex;
@@ -110,6 +109,19 @@
       font-size: 0.85rem;
     }
 
+    @keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s;
+}
+
+
     @media (max-width: 480px) {
       .login-container {
         margin: 2rem 1rem;
@@ -127,13 +139,19 @@
     <p>Please log in to manage the platform</p>
 
     <label>Email Address</label>
-    <input type="email" placeholder="admin@samra.com" required />
+    <input
+  type="email"
+  id="adminEmail"
+  placeholder="admin@samra.com"
+  required />
 
     <label>Password</label>
     <div class="password-wrapper">
       <input type="password" id="adminPassword" placeholder="••••••••" required />
       <span class="show-hide" onclick="togglePassword('adminPassword', this)">Show</span>
     </div>
+    <div id="passwordFeedback" style="font-size: 0.85rem; margin-top: 0.25rem;"></div>
+
 
     <div class="options">
       <label><input type="checkbox" /> Remember me</label>
@@ -159,6 +177,150 @@
         toggleEl.innerText = 'Show';
       }
     }
+  
+    const loginBtn = document.querySelector('.btn');
+    const emailInput = document.getElementById('adminEmail');
+    const passwordInput = document.getElementById('adminPassword');
+  
+    // Message below the form
+    const message = document.createElement('div');
+    message.style.marginTop = "1rem";
+    message.style.fontSize = "0.9rem";
+    message.style.textAlign = "center";
+    document.querySelector(".login-container").appendChild(message);
+  
+    // Email format feedback
+    const emailFeedback = document.createElement('div');
+    emailFeedback.style.fontSize = "0.85rem";
+    emailFeedback.style.marginTop = "0.25rem";
+    emailInput.insertAdjacentElement("afterend", emailFeedback);
+  
+    // Password feedback (add after input manually)
+    const passwordFeedback = document.createElement('div');
+    passwordFeedback.id = "passwordFeedback";
+    passwordFeedback.style.fontSize = "0.85rem";
+    passwordFeedback.style.marginTop = "0.25rem";
+    passwordInput.parentNode.insertAdjacentElement("afterend", passwordFeedback);
+  
+    function isValidEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+  
+    // Live email format check
+    emailInput.addEventListener("input", () => {
+      const value = emailInput.value.trim();
+  
+      if (value === "") {
+        emailFeedback.textContent = "";
+        emailInput.style.borderColor = "#ccc";
+        return;
+      }
+  
+      if (!isValidEmail(value)) {
+        emailFeedback.textContent = "❌ Enter email in the correct format";
+        emailFeedback.style.color = "red";
+        emailInput.style.borderColor = "#ccc";
+      } else {
+        emailFeedback.textContent = "✅ Email format is correct";
+        emailFeedback.style.color = "green";
+        emailInput.style.borderColor = "#ccc";
+      }
+    });
+  
+    loginBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+  
+      const emailVal = emailInput.value.trim();
+      const passwordVal = passwordInput.value.trim();
+  
+      // Reset styles
+      [emailInput, passwordInput].forEach(input => {
+        input.style.borderColor = "#ccc";
+        input.classList.remove("shake");
+      });
+      message.textContent = "";
+      emailFeedback.textContent = "";
+      passwordFeedback.textContent = "";
+  
+      // BOTH empty
+      if (emailVal === "" && passwordVal === "") {
+        emailInput.style.borderColor = "red";
+        passwordInput.style.borderColor = "red";
+        emailInput.classList.add("shake");
+        passwordInput.classList.add("shake");
+        message.style.color = "red";
+        message.textContent = "❌ Email and password cannot be empty.";
+        return;
+      }
+  
+      // EMAIL empty
+      if (emailVal === "") {
+        emailInput.style.borderColor = "red";
+        emailInput.classList.add("shake");
+        message.style.color = "red";
+        message.textContent = "❌ Email cannot be empty.";
+        return;
+      }
+  
+      // Invalid email format
+      if (!isValidEmail(emailVal)) {
+        emailInput.style.borderColor = "red";
+        emailInput.classList.add("shake");
+        message.style.color = "red";
+        message.textContent = "❌ Please enter a valid email address.";
+        return;
+      }
+  
+      // PASSWORD empty
+      if (passwordVal === "") {
+        passwordInput.style.borderColor = "red";
+        passwordInput.classList.add("shake");
+        passwordFeedback.style.color = "red";
+        passwordFeedback.textContent = "❌ Password cannot be empty.";
+        return;
+      }
+  
+      // ✅ Success!
+      if (emailVal === "admin@samra.com" && passwordVal === "pass123") {
+        message.style.color = "green";
+        message.textContent = "✅ Login successful! Redirecting...";
+  
+        // Add DARK GREEN border
+        emailInput.style.border = "2px solid #006400";
+        passwordInput.style.border = "2px solid #006400";
+  
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userRole", "admin");
+  
+        setTimeout(() => {
+          window.location.href = "admin-dashboard.html";
+        }, 1000);
+      } else {
+        message.style.color = "red";
+        message.textContent = "❌ Incorrect email or password.";
+        emailInput.style.borderColor = "red";
+        passwordInput.style.borderColor = "red";
+        emailInput.classList.add("shake");
+        passwordInput.classList.add("shake");
+      }
+    });
+  
+    emailInput.addEventListener("input", () => {
+      emailInput.style.borderColor = "#ccc";
+      emailInput.classList.remove("shake");
+      message.textContent = "";
+    });
+  
+    passwordInput.addEventListener("input", () => {
+      passwordInput.style.borderColor = "#ccc";
+      passwordInput.classList.remove("shake");
+      passwordFeedback.textContent = "";
+      message.textContent = "";
+    });
   </script>
+  
 </body>
 </html>
+
+
