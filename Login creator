@@ -147,6 +147,8 @@
       <input type="password" id="creatorPassword" placeholder="••••••••" required />
       <span class="show-hide" onclick="togglePassword('creatorPassword', this)">Show</span>
     </div>
+    <div id="passwordFeedback" style="font-size: 0.85rem; margin-top: 0.25rem;"></div>
+    
     
 
     <div class="options">
@@ -177,51 +179,137 @@
         const emailInput = document.querySelector('input[type="email"]');
         const passwordInput = document.getElementById('creatorPassword');
       
-        // Message area
         const message = document.createElement('div');
         message.style.marginTop = "1rem";
         message.style.fontSize = "0.9rem";
         message.style.textAlign = "center";
         document.querySelector(".login-container").appendChild(message);
       
+        const emailFeedback = document.createElement('div');
+        emailFeedback.style.fontSize = "0.85rem";
+        emailFeedback.style.marginTop = "0.25rem";
+        emailInput.insertAdjacentElement("afterend", emailFeedback);
+      
+        const passwordFeedback = document.getElementById("passwordFeedback");
+      
+        function isValidEmail(email) {
+          const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return regex.test(email);
+        }
+      
+        emailInput.addEventListener("input", () => {
+          const value = emailInput.value.trim();
+      
+          if (value === "") {
+            emailFeedback.textContent = "";
+            emailInput.style.borderColor = "#ccc";
+            return;
+          }
+      
+          if (!isValidEmail(value)) {
+            emailFeedback.textContent = "❌ Enter email in the correct format";
+            emailFeedback.style.color = "red";
+            emailInput.style.borderColor = "#ccc";
+          } else {
+            emailFeedback.textContent = "✅ Email format is correct";
+            emailFeedback.style.color = "green";
+            emailInput.style.borderColor = "#ccc";
+          }
+        });
+      
         loginBtn.addEventListener('click', function (e) {
           e.preventDefault();
-          const email = emailInput.value.trim();
-          const password = passwordInput.value;
       
-          // Reset styling
+          const emailVal = emailInput.value.trim();
+          const passwordVal = passwordInput.value.trim();
+      
           [emailInput, passwordInput].forEach(input => {
             input.style.borderColor = "#ccc";
+            input.classList.remove("shake");
           });
-          message.innerHTML = "";
+          message.textContent = "";
+          emailFeedback.textContent = "";
+          passwordFeedback.textContent = "";
       
-          if (email === "creator@samra.com" && password === "pass123") {
+          // Both empty
+          if (emailVal === "" && passwordVal === "") {
+            emailInput.style.borderColor = "red";
+            passwordInput.style.borderColor = "red";
+            emailInput.classList.add("shake");
+            passwordInput.classList.add("shake");
+            message.style.color = "red";
+            message.textContent = "❌ Email and password cannot be empty.";
+            return;
+          }
+      
+          // Email empty
+          if (emailVal === "") {
+            emailInput.style.borderColor = "red";
+            emailInput.classList.add("shake");
+            message.style.color = "red";
+            message.textContent = "❌ Email cannot be empty.";
+            return;
+          }
+      
+          // Invalid email
+          if (!isValidEmail(emailVal)) {
+            emailInput.style.borderColor = "red";
+            emailInput.classList.add("shake");
+            message.style.color = "red";
+            message.textContent = "❌ Please enter a valid email address.";
+            return;
+          }
+      
+          // Password empty
+          if (passwordVal === "") {
+            passwordInput.style.borderColor = "red";
+            passwordInput.classList.add("shake");
+            passwordFeedback.style.color = "red";
+            passwordFeedback.textContent = "❌ Password cannot be empty.";
+            return;
+          }
+      
+          // All correct
+          if (emailVal === "creator@samra.com" && passwordVal === "pass123") {
             message.style.color = "green";
-            message.innerHTML = "✅ Login successful! Redirecting...";
+            message.textContent = "✅ Login successful! Redirecting...";
+      
+            //  Set dark green borders when both correct
+            emailInput.style.border = "2px solid #006400";
+            passwordInput.style.border = "2px solid #006400";
+
+      
             localStorage.setItem("isLoggedIn", "true");
             localStorage.setItem("userRole", "creator");
+      
             setTimeout(() => {
               window.location.href = "Homepage.html";
             }, 1000);
           } else {
             message.style.color = "red";
-            message.innerHTML = "❌ Incorrect email or password.";
-            [emailInput, passwordInput].forEach(input => {
-              input.style.borderColor = "red";
-              input.classList.add("shake");
-            });
+            message.textContent = "❌ Incorrect email or password.";
+            emailInput.style.borderColor = "red";
+            passwordInput.style.borderColor = "red";
+            emailInput.classList.add("shake");
+            passwordInput.classList.add("shake");
           }
         });
       
-        // Clear red borders on typing
-        [emailInput, passwordInput].forEach(input => {
-          input.addEventListener("input", () => {
-            input.style.borderColor = "#ccc";
-            input.classList.remove("shake");
-            message.innerHTML = "";
-          });
+        emailInput.addEventListener("input", () => {
+          emailInput.style.borderColor = "#ccc";
+          emailInput.classList.remove("shake");
+          message.textContent = "";
+        });
+      
+        passwordInput.addEventListener("input", () => {
+          passwordInput.style.borderColor = "#ccc";
+          passwordInput.classList.remove("shake");
+          passwordFeedback.textContent = "";
+          message.textContent = "";
         });
       </script>
+      
+      
       
 </body>
 </html>
