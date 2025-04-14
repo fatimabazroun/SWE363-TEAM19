@@ -33,8 +33,7 @@ passward: pass123
 code: 1234
 
 
-
 Team member names and roles.
 
-Fatima Bazroun: homepage, login page for both admin and creator, map pages, dhahran-library, popular-stories, riyadh-library, inital setting, dashboard(fav,followers) and creating readme file and figma designs. 
+Fatima Bazroun: homepage and accessibility for guest users and creators, login page for both admin and creator the functions of them, map pages and intgrating the api, dhahran-library, popular-stories, riyadh-library, inital setting, dashboard(fav,followers) and creating readme file, the repository and figma designs. 
 
