@@ -123,7 +123,7 @@
 }
 
 
-    @media (max-width: 480px) {
+ @media (max-width: 480px) {
       .login-container {
         margin: 2rem 1rem;
       }
@@ -158,11 +158,23 @@
 
     <button class="btn">Log In</button>
 
+    
+    <div id="codeVerification" style="display: none; margin-top: 1rem;">
+      <label>Verification Code</label>
+      <input type="text" id="verificationCodeInput" placeholder="Enter 4-digit code" maxlength="4"
+            style="width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;">
+      <button class="btn" id="verifyCodeBtn">Verify Code</button>
+    </div>
+
+
     <div class="bottom-link">
         Don't have an account? <a href="#">Sign Up</a><br />
         <a href="homepage.html" style="color: #8b0000; text-decoration: none;">← Back to Homepage</a>
       </div>
       
+
+
+
       <script>
         function togglePassword(id, toggleEl) {
           const input = document.getElementById(id);
@@ -178,6 +190,12 @@
         const loginBtn = document.querySelector('.btn');
         const emailInput = document.querySelector('input[type="email"]');
         const passwordInput = document.getElementById('creatorPassword');
+
+               
+        const codeBox = document.getElementById('codeVerification');
+        const codeInput = document.getElementById('verificationCodeInput');
+        const verifyBtn = document.getElementById('verifyCodeBtn');
+
       
         const message = document.createElement('div');
         message.style.marginTop = "1rem";
@@ -270,7 +288,7 @@
           }
       
           // All correct
-          if (emailVal === "creator@samra.com" && passwordVal === "pass123") {
+          /* if (emailVal === "creator@samra.com" && passwordVal === "pass123") {
             message.style.color = "green";
             message.textContent = "✅ Login successful! Redirecting...";
       
@@ -285,7 +303,18 @@
             setTimeout(() => {
               window.location.href = "Homepage.html";
             }, 1000);
-          } else {
+            }
+            */
+            if (emailVal === "creator@samra.com" && passwordVal === "pass123") {
+                  message.style.color = "green";
+                  message.textContent = "✅ Credentials accepted. Please enter your verification code.";
+                  emailInput.style.border = "2px solid #006400";
+                  passwordInput.style.border = "2px solid #006400";
+                  codeBox.style.display = "block";
+                  console.log("Fake verification code sent: 1234");
+                }
+            
+           else {
             message.style.color = "red";
             message.textContent = "❌ Incorrect email or password.";
             emailInput.style.borderColor = "red";
@@ -307,6 +336,26 @@
           passwordFeedback.textContent = "";
           message.textContent = "";
         });
+
+
+              verifyBtn.addEventListener("click", () => {
+        if (codeInput.value === "1234") {
+          message.style.color = "green";
+           codeInput.style.border = "2px solid #006400"
+          message.textContent = "✅ Code verified! Logging in...";
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("userRole", "creator");
+
+          setTimeout(() => {
+            window.location.href = "Homepage.html";
+          }, 1000);
+        } else {
+          message.style.color = "red";
+          message.textContent = "❌ Incorrect verification code.";
+          codeInput.style.border = "1px solid red";
+        }
+      });
+
       </script>
       
       
