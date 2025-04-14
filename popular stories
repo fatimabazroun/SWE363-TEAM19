@@ -211,7 +211,7 @@
 
 
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: flex-start;
@@ -251,7 +251,7 @@
             <ul class="dropdown">
               <li><a href="popular-stories.html">Popular Stories</a></li>
               <li><a href="riyadh-library.html">Riyadh Library</a></li>
-              <li><a href="dhahran-library.html">Dhahran Library</a></li>
+              <li><a href="dhahran-library.html">ash sharqiyah Library</a></li>
             </ul>
           </li>
         </ul>
@@ -313,7 +313,7 @@
       
         <!-- Story Card 1 -->
         <div class="card">
-          <img src="images/story1.jpg" alt="Fiction">
+          <img src="images/Gobi-Desert-scaled-1-768x488.jpg" alt="Fiction">
           <div class="card-content">
             <strong>Fiction</strong>
             <h4>The Guardian of the Desert</h4>
@@ -394,6 +394,72 @@
 
   searchInput.addEventListener('input', filterCards);
   filterType.addEventListener('change', filterCards);
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "creator") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <a href="creator-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logout()">Log Out</button>
+      `;
+    }
+  });
+
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userRole");
+    location.reload();
+  }
+</script>
+
+<script>
+  function logoutConfirmation() {
+    const confirmed = confirm("Are you sure you want to log out?");
+    if (confirmed) {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userRole");
+      window.location.href = "Homepage.html";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "creator") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Creator</span>
+        <a href="creator-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+      `;
+    }
+
+    if (isLoggedIn && userRole === "admin") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Admin</span>
+        <a href="admin-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+      `;
+    }
+  });
 </script>
 
 </body>
