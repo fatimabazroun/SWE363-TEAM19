@@ -17,23 +17,24 @@ come.
 
 
 Setup and installation instructions.  
-important Note:  bulit it for both moblie and desktop 
-Download zip flie 
-upload it to visial studio code 
+`important Note:`  bulit it for both moblie and desktop  
+1. Download zip flie  
+2. upload it to visial studio code  
 
 Usage instructions and examples.
-creator:
-email: creator@samra.com
-passward: pass123
-code: 1234
+`login credentials`  
+**creator:**  
+email: creator@samra.com  
+passward: pass123  
+code: 1234  
 
-Admin:
-email: Admin@samra.com
-passward: pass123
-code: 1234
+**Admin:**  
+email: Admin@samra.com  
+passward: pass123  
+code: 1234  
 
 
-Team member names and roles.
+Team member names and roles.  
 
 Fatima Bazroun: homepage and accessibility for guest users and creators, login page for both admin and creator the functions of them, map pages and intgrating the api, dhahran-library, popular-stories, riyadh-library, inital setting, dashboard(fav,followers) and creating readme file, the repository and figma designs. 
 
