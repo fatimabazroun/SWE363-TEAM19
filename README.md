@@ -16,7 +16,7 @@ preserve SaudiArabia’s oral andwritten traditions, ensuring they remain access
 come.
 
 
-Setup and installation instructions.
+Setup and installation instructions.  
 important Note:  bulit it for both moblie and desktop 
 Download zip flie 
 upload it to visial studio code 
