@@ -1,6 +1,6 @@
 # SWE363-TEAM19
-Project title and description.
-Title: SAMRA
+Project title and description.  
+Title: **SAMRA**  
 
 interactive storytelling platform dedicated to preserving and sharing SaudiArabia’s rich
 cultural heritage through user-generated stories. The platform will serve as a digital archivewhere content creators can
@@ -13,7 +13,7 @@ system will incentivize engagement, encouraging both creators and readers to con
 interactive map featurewill allowusers to discover stories tied to specific Saudiregions,reinforcing the country’s diverse
 cultural history. By combining storytelling, community participation, and interactive features,this platform aims to
 preserve SaudiArabia’s oral andwritten traditions, ensuring they remain accessible and appreciated for generations to
-come.
+come.  
 
 
 Setup and installation instructions.  
@@ -21,7 +21,7 @@ Setup and installation instructions.
 1. Download zip flie  
 2. upload it to visial studio code  
 
-Usage instructions and examples.
+Usage instructions and examples.  
 `login credentials`  
 **creator:**  
 email: creator@samra.com  
@@ -36,5 +36,5 @@ code: 1234
 
 Team member names and roles.  
 
-Fatima Bazroun: homepage and accessibility for guest users and creators, login page for both admin and creator the functions of them, map pages and intgrating the api, dhahran-library, popular-stories, riyadh-library, inital setting, dashboard(fav,followers) and creating readme file, the repository and figma designs. 
+`Fatima Bazroun:` homepage and accessibility for guest users and creators, login page for both admin and creator the functions of them, map pages and intgrating the api, dhahran-library, popular-stories, riyadh-library, inital setting, dashboard(fav,followers) and creating readme file, the repository and figma designs. 
 
