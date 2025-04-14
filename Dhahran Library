@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dhahran Library - Samra</title>
+  <title>ash sharqiyah Library - Samra</title>
   <style>
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: flex-start;
@@ -242,7 +242,7 @@
             <ul class="dropdown">
               <li><a href="popular-stories.html">Popular Stories</a></li>
               <li><a href="riyadh-library.html">Riyadh Library</a></li>
-              <li><a href="dhahran-library.html">Dhahran Library</a></li>
+              <li><a href="dhahran-library.html">ash sharqiyah Library</a></li>
             </ul>
           </li>
         </ul>
@@ -255,23 +255,30 @@
   </header>
 
   <div class="container">
+    <h2>Ash Sharqiyah Library</h2>
     <div style="margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <button id="filterToggle" style="background: none; border: none; font-weight: bold; font-size: 1rem; cursor: pointer;">
           ▼ Filter Stories
         </button>
-        <div id="filterPanel" style="display: none; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; background: #fff; margin-top: 0.5rem;">
-          <label><input type="checkbox" class="filter-checkbox" value="Fiction" checked> Fiction</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Community Gathering" checked> Community Gathering</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="History" checked> History</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Workshop" checked> Workshop</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Art & Culture" checked> Art & Culture</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Memoir" checked> Memoir</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Documentary" checked> Documentary</label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Innovation" checked> Innovation</label>
-        </div>
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search stories..." style="background-color: #8b0000; color: white; border: 2px solid #fff; padding: 0.4rem 0.8rem; border-radius: 5px; font-size: 1rem; width: 220px;">
       </div>
-      
-    <h2>Dhahran Library</h2>
+    
+      <div id="filterPanel" style="display: none; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; background: #fff; margin-top: 0.5rem;">
+        <label><input type="checkbox" class="filter-checkbox" value="Fiction" checked> Fiction</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Community Gathering" checked> Community Gathering</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="History" checked> History</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Workshop" checked> Workshop</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Art & Culture" checked> Art & Culture</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Memoir" checked> Memoir</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Documentary" checked> Documentary</label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Innovation" checked> Innovation</label>
+      </div>
+    </div>
+    
+    <!-- Filtered Results Container -->
+    <div id="filteredResults" class="cards" style="display: none;"></div>
+  
     <div class="cards page active">
       <!-- Page 1 Cards -->
       <div class="card">
@@ -289,7 +296,7 @@
           <strong>Community Gathering</strong>
           <h4>Voices of Dhahran</h4>
           <p>A celebration of storytelling culture...</p>
-          <span>Ali Al-Qatif<br>Speaker</span>
+          <span>Ali Al-Hasa<br>Speaker</span>
         </div>
       </div>
       <div class="card">
@@ -304,7 +311,7 @@
       <div class="card">
         <img src="images/dhahran4.jpg" alt="Workshop">
         <div class="card-content">
-          <strong>Workshop</strong>
+          <strong>History</strong>
           <h4>Preserving Heritage Digitally</h4>
           <p>Learn digital archiving practices...</p>
           <span>Mohammed Al-Sabah<br>Archivist</span>
@@ -323,7 +330,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/dhahran6.jpg" alt="Memoir">
+        <img src="images/dhahran6.webp" alt="Memoir">
         <div class="card-content">
           <strong>Memoir</strong>
           <h4>Growing Up in Aramco</h4>
@@ -370,25 +377,141 @@
     const toggleBtn = document.getElementById('filterToggle');
     const panel = document.getElementById('filterPanel');
     const checkboxes = document.querySelectorAll('.filter-checkbox');
+    const searchInput = document.getElementById('searchInput');
+    const pages = document.querySelectorAll('.page');
+    const pagination = document.querySelector('.pagination');
+    const filteredResults = document.getElementById('filteredResults');
   
     toggleBtn.addEventListener('click', () => {
       panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
       toggleBtn.innerText = panel.style.display === 'none' ? '▼ Filter Stories' : '▲ Hide Filters';
     });
   
-    checkboxes.forEach(box => {
-      box.addEventListener('change', () => {
-        const selected = Array.from(checkboxes)
-          .filter(cb => cb.checked)
-          .map(cb => cb.value);
+    function applyFilters() {
+      const selectedCategories = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value.toLowerCase());
   
+      const searchText = searchInput.value.toLowerCase();
+      let isFiltering = searchText.length > 0 || selectedCategories.length < checkboxes.length;
+  
+      // Clear previous filtered results
+      filteredResults.innerHTML = '';
+  
+      if (isFiltering) {
+        // Hide paginated content
+        pages.forEach(p => p.style.display = 'none');
+        pagination.style.display = 'none';
+        filteredResults.style.display = 'grid';
+  
+        // Collect and show matching cards from all pages
         document.querySelectorAll('.card').forEach(card => {
-          const category = card.querySelector('strong')?.innerText?.trim();
-          card.style.display = selected.includes(category) ? 'block' : 'none';
+          const category = card.querySelector('strong')?.innerText?.toLowerCase() || '';
+          const title = card.querySelector('h4')?.innerText?.toLowerCase() || '';
+          const matchesCategory = selectedCategories.includes(category);
+          const matchesSearch = title.includes(searchText) || category.includes(searchText);
+  
+          if (matchesCategory && matchesSearch) {
+            const clone = card.cloneNode(true);
+            filteredResults.appendChild(clone);
+          }
         });
+      } else {
+        // Show paginated content again
+        filteredResults.style.display = 'none';
+        pages.forEach(p => p.style.display = '');
+        pagination.style.display = 'block';
+        showPage(1);
+      }
+    }
+  
+    checkboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+    searchInput.addEventListener('input', applyFilters);
+  
+    function showPage(pageNumber) {
+      pages.forEach((page, index) => {
+        page.classList.toggle('active', index + 1 === pageNumber);
       });
+  
+      document.querySelectorAll('.pagination button[data-page]').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.pagination button[data-page='${pageNumber}']`);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage(1);
     });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "creator") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <a href="creator-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logout()">Log Out</button>
+      `;
+    }
+  });
+
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userRole");
+    location.reload();
+  }
   </script>
+
+
+
+<script>
+  function logoutConfirmation() {
+    const confirmed = confirm("Are you sure you want to log out?");
+    if (confirmed) {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userRole");
+      window.location.href = "Homepage.html";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "creator") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Creator</span>
+        <a href="creator-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+      `;
+    }
+
+    if (isLoggedIn && userRole === "admin") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Admin</span>
+        <a href="admin-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+      `;
+    }
+  });
+</script>
+
+
   
 </body>
 
