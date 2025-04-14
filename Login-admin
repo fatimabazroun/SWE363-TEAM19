@@ -160,6 +160,14 @@
 
     <button class="btn">Log In</button>
 
+    <div id="codeVerification" style="display: none; margin-top: 1rem;">
+      <label>Verification Code</label>
+      <input type="text" id="verificationCodeInput" placeholder="Enter 4-digit code" maxlength="4"
+             style="width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;">
+      <button class="btn" id="verifyCodeBtn">Verify Code</button>
+    </div>
+    
+
     <div class="bottom-link">
       Not an admin? <a href="creator-login.html">Login as Creator</a><br />
       <a href="Homepage.html" style="color: #8b0000; text-decoration: none;">← Back to Homepage</a>
@@ -182,6 +190,11 @@
     const emailInput = document.getElementById('adminEmail');
     const passwordInput = document.getElementById('adminPassword');
   
+
+      const codeBox = document.getElementById('codeVerification');
+      const codeInput = document.getElementById('verificationCodeInput');
+      const verifyBtn = document.getElementById('verifyCodeBtn');
+
     // Message below the form
     const message = document.createElement('div');
     message.style.marginTop = "1rem";
@@ -281,7 +294,7 @@
         return;
       }
   
-      // ✅ Success!
+      /* Success!
       if (emailVal === "admin@samra.com" && passwordVal === "pass123") {
         message.style.color = "green";
         message.textContent = "✅ Login successful! Redirecting...";
@@ -296,7 +309,19 @@
         setTimeout(() => {
           window.location.href = "admin-dashboard.html";
         }, 1000);
-      } else {
+      }*/
+
+              if (emailVal === "admin@samra.com" && passwordVal === "pass123") {
+          message.style.color = "green";
+          message.textContent = "✅ Credentials accepted. Please enter your verification code.";
+          emailInput.style.border = "2px solid #006400";
+          passwordInput.style.border = "2px solid #006400";
+          codeBox.style.display = "block";
+          console.log("Fake verification code sent: 1234");
+        }
+
+    
+      else {
         message.style.color = "red";
         message.textContent = "❌ Incorrect email or password.";
         emailInput.style.borderColor = "red";
@@ -318,6 +343,47 @@
       passwordFeedback.textContent = "";
       message.textContent = "";
     });
+
+/*
+    verifyBtn.addEventListener("click", () => {
+  if (codeInput.value === "1234") {
+    message.style.color = "green";
+    message.textContent = "✅ Code verified! Logging in...";
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userRole", "admin");
+
+    setTimeout(() => {
+      window.location.href = "admin-dashboard.html";
+    }, 1000);
+  } else {
+    message.style.color = "red";
+    message.textContent = "❌ Incorrect verification code.";
+    codeInput.style.border = "1px solid red";
+  }
+});
+*/
+
+
+
+verifyBtn.addEventListener("click", () => {
+        if (codeInput.value === "1234") {
+          message.style.color = "green";
+          codeInput.style.border = "2px solid #006400"
+          message.textContent = "✅ Code verified! Logging in...";
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("userRole", "creator");
+
+
+          setTimeout(() => {
+            window.location.href = "Homepage.html";
+          }, 1000);
+        } else {
+          message.style.color = "red";
+          message.textContent = "❌ Incorrect verification code.";
+          codeInput.style.border = "1px solid red";
+        }
+      });
+
   </script>
   
 </body>
