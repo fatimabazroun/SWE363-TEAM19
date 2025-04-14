@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Riyadh Library - Samra</title>
   <style>
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: flex-start;
@@ -236,7 +236,7 @@
             <ul class="dropdown">
               <li><a href="popular-stories.html">Popular Stories</a></li>
               <li><a href="riyadh-library.html">Riyadh Library</a></li>
-              <li><a href="dhahran-library.html">Dhahran Library</a></li>
+              <li><a href="dhahran-library.html">ash sharqiyah Library</a></li>
             </ul>
           </li>
         </ul>
@@ -262,7 +262,6 @@
         <label><input type="checkbox" class="filter-checkbox" value="Fiction" checked> Fiction</label><br>
         <label><input type="checkbox" class="filter-checkbox" value="Culture" checked> Culture</label><br>
         <label><input type="checkbox" class="filter-checkbox" value="Historical Narratives" checked> Historical Narratives</label><br>
-        <label><input type="checkbox" class="filter-checkbox" value="Events" checked> Events</label><br>
         <label><input type="checkbox" class="filter-checkbox" value="Personal Stories" checked> Personal Stories</label>
       </div>
     </div>
@@ -271,7 +270,7 @@
     <div class="cards page active">
       <!-- Page 1 Cards -->
       <div class="card">
-        <img src="images/story1.jpg" alt="Fiction">
+        <img src="images/Gobi-Desert-scaled-1-768x488.jpg" alt="Fiction">
         <div class="card-content">
           <strong>Fiction</strong>
           <h4>The Guardian of Desert</h4>
@@ -282,7 +281,7 @@
       <div class="card">
         <img src="images/story2.jpg" alt="Story">
         <div class="card-content">
-          <strong>Storytelling Event</strong>
+          <strong>Fiction</strong>
           <h4>Seven Lost Pearls of the Arabian Gulf</h4>
           <p>Explore the magic of Saudi folklore...</p>
           <span>Omar Al-Faris<br>Host</span>
@@ -300,7 +299,7 @@
       <div class="card">
         <img src="images/story4.jpg" alt="Workshop">
         <div class="card-content">
-          <strong>Cultural Workshop</strong>
+          <strong>Culture</strong>
           <h4>The Shepherd’s Journey</h4>
           <p>Learn how to document folklore and traditions...</p>
           <span>Dr. Aisha AlMutairi<br>Host</span>
@@ -317,6 +316,7 @@
           <p>Traditions passed through generations...</p>
           <span>Layla Al-Najdi<br>Archivist</span>
         </div>
+        
       </div>
       <div class="card">
         <img src="images/story6.jpg" alt="History">
@@ -339,8 +339,8 @@
       <div class="card">
         <img src="images/story8.jpg" alt="Festival">
         <div class="card-content">
-          <strong>Events</strong>
-          <h4>Janadriyah: A Festival of Culture</h4>
+          <strong>Culture</strong>
+          <h4> A Festival of Culture</h4>
           <p>Explore the celebration of Saudi identity...</p>
           <span>Omar Al-Saif<br>Reporter</span>
         </div>
@@ -432,7 +432,73 @@
     document.addEventListener('DOMContentLoaded', () => {
       showPage(1);
     });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "creator") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <a href="creator-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logout()">Log Out</button>
+      `;
+    }
+  });
+
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userRole");
+    location.reload();
+  }
   </script>
+
+<script>
+  function logoutConfirmation() {
+    const confirmed = confirm("Are you sure you want to log out?");
+    if (confirmed) {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userRole");
+      window.location.href = "Homepage.html";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "creator") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Creator</span>
+        <a href="creator-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+      `;
+    }
+
+    if (isLoggedIn && userRole === "admin") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Admin</span>
+        <a href="admin-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+      `;
+    }
+  });
+</script>
   
 </body>
 </html>
