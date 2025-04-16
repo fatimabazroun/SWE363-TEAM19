@@ -1,1 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writer Profile - Samra</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf8f3;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e0c6b5;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      height: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      position: relative;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: black;
+    }
+
+    nav ul li:hover,
+    nav ul li:hover>a {
+      color: #8b0000;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: none;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .nav-list li:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown li {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .dropdown li:hover {
+      background-color: #f7f7f7;
+      color: #8b0000;
+    }
+
+    .login-btn {
+      padding: 0.4rem 1rem;
+      border: 2px solid #8b0000;
+      background: white;
+      color: #8b0000;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #8b0000;
+      color: white;
+    }
+
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem 2rem;
+      background-color: #f7f7f7;
+      text-align: center;
+    }
+
+    .profile-section h2 {
+      margin: 0.5rem 0 0.2rem;
+      color: #333;
+    }
+
+    .profile-section p {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge {
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: white;
+      background-color: #f3c440;
+      border: none;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      border-bottom: 2px solid #e0c6b5;
+      background: #fff;
+    }
+
+    .tabs div {
+      cursor: pointer;
+      font-weight: 600;
+      color: black;
+      transition: color 0.3s;
+    }
+
+    .tabs div:hover {
+      color: #8b0000;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .story-box {
+      background: #fdfdfd;
+      margin: 2rem auto;
+      width: 90%;
+      max-width: 900px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .story-box h4 {
+      margin: 0.3rem 0;
+      color: #8b0000;
+    }
+
+    .story-box a {
+      text-decoration: none;
+      color: #8b0000;
+      font-weight: bold;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .pagination span {
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      border: 2px solid #8b0000;
+      color: #8b0000;
+      font-weight: 500;
+    }
+
+    .pagination span.active {
+      background-color: #8b0000;
+      color: white;
+    }
+
+    footer {
+      background-color: #562e39;
+      color: white;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-text {
+      text-align: center;
+      flex: 1 1 100%;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+
+      .login-btn {
+        width: 100%;
+      }
+
+      footer {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a href="Homepage.html"><img src="images/logo.jpg" alt="Samra Logo" class="logo"></a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="Homepage.html">Home page</a></li>
+          <li><a href="Map.html">View Map</a></li>
+          <li tabindex="0">
+            Stories ▾
+            <ul class="dropdown">
+              <li><a href="popular-stories.html">Popular Stories</a></li>
+              <li><a href="riyadh-library.html">Riyadh Library</a></li>
+              <li><a href="dhahran-library.html">ash sharqiyah Library</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;" id="loginArea">
+      <a href="creator-login.html">
+        <button class="login-btn">Log in As Creator</button>
+      </a>
+      <a href="admin-login.html">
+        <button class="login-btn">Log in As Admin</button>
+      </a>
+    </div>
+  </header>
+
+  <section class="profile-section">
+    <img src="images/profile.jpg" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"/>
+    <h2>Khaled Mubarak</h2>
+    <p>Writer</p>
+    <p>I am a writer passionate about preserving Saudi folklore and history through storytelling. Through my work, I aim
+      to breathe life into cultural tales, honor the voices of the past, and inspire future generations to connect with
+      their heritage and identity.</p>
+    <div class="badge">LEVEL: GOLD</div>
+  </section>
+
+  <div class="tabs">
+    <div onclick="showTab('published')">Published work</div>
+    <div onclick="showTab('events')">Events</div>
+  </div>
+
+  <div id="published" class="tab-content active">
+    <div class="story-box">
+      <strong>Fiction</strong>
+      <h4><a href="guardian-of-desert.html">The Guardian of Desert</a></h4>
+    </div>
+  </div>
+
+  <div id="events" class="tab-content">
+    <div class="story-box">
+      <strong>No events yet.</strong>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="footer-text">Samra &copy; 2025. All rights reserved.</div>
+    <div class="socials">
+      <span>✉</span>
+      <span>📷</span>
+      <span>in</span>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
+</body>
+
+</html>
