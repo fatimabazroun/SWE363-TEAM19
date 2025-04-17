@@ -19,7 +19,19 @@ come.
 Setup and installation instructions.  
 `important Notes:`  bulit it for both moblie and desktop, start file is just for us to commit and upload our work, this is a SAMPLE data it inclues two proflies only but it shows how they work 
 1. Download zip flie  
-2. upload it to visial studio code  
+2. upload it to visual studio code  
+3. start running at the **homepage**  
+4. naviage to pages and login information   
+   `login credentials`  
+**creator:**  
+email: creator@samra.com  
+passward: pass123  
+code: 1234  
+
+**Admin:**  
+email: Admin@samra.com  
+passward: pass123  
+code: 1234  
 
 Usage instructions and examples.  
 `login credentials`  
@@ -32,6 +44,7 @@ code: 1234
 email: Admin@samra.com  
 passward: pass123  
 code: 1234  
+
 
 
 Team member names and roles.  
