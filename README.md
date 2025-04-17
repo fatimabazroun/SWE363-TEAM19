@@ -22,16 +22,16 @@ Setup and installation instructions.
 2. upload it to visual studio code  
 3. start running at the **homepage**  
 4. naviage to pages and login information   
-   `login credentials`  
-**creator:**  
-email: creator@samra.com  
-passward: pass123  
-code: 1234  
-
-**Admin:**  
-email: Admin@samra.com  
-passward: pass123  
-code: 1234  
+   `login credentials`   
+      **creator:**  
+      email: creator@samra.com  
+      passward: pass123  
+      code: 1234  
+      
+      **Admin:**  
+      email: Admin@samra.com  
+      passward: pass123  
+      code: 1234  
 
 Usage instructions and examples.  
 `login credentials`  
