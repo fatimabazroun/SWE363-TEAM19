@@ -17,7 +17,7 @@ come.
 
 
 Setup and installation instructions.  
-`important Note:`  bulit it for both moblie and desktop  
+`important Notes:`  bulit it for both moblie and desktop, start file is just for us to commit and upload our work, this is a SAMPLE data it inclues two proflies only but it shows how they work 
 1. Download zip flie  
 2. upload it to visial studio code  
 
