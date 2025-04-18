@@ -50,5 +50,5 @@ code: 1234
 
 Team member names and roles.  
 
-`Fatima Bazroun:` homepage and accessibility for guest users and creators, login page for both admin and creator the functions of them, map pages and intgrating the api, dhahran-library, popular-stories, riyadh-library profile for creatos , inital setting, dashboard(fav,followers) helped debugging and integrating funtion with testing, creating readme file, the repository and figma designs. 
+`Fatima Bazroun:` homepage and accessibility for guest users and creators, login page for both admin and creator the functions of them, map pages and intgrating the api, dhahran-library, popular-stories, riyadh-library profile for creatos , inital dashboard helped debugging and integrating funtions with testing, creating readme file, the repository and figma designs. 
 
