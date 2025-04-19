@@ -308,13 +308,21 @@
     </div>
 
     <div class="input-group">
-      <label for="story-type">Story Type</label>
-      <select id="story-type">
-        <option value="">Select Story Type</option>
-        <option value="fiction">Fiction</option>
-        <option value="non-fiction">Non-fiction</option>
-      </select>
-    </div>
+  <label for="story-type">Story Type</label>
+  <select id="story-type">
+    <option value="">Select Story Type</option>
+    <option value="fiction">Fiction</option>
+    <option value="non-fiction">Non-fiction</option>
+    <option value="community-gathering">Community Gathering</option>
+    <option value="history">History</option>
+    <option value="workshop">Workshop</option>
+    <option value="art-&-culture">Art & Culture</option>
+    <option value="memoir">Memoir</option>
+    <option value="documentary">Documentary</option>
+    <option value="innovation">Innovation</option>
+  </select>
+</div>
+
 
     <div class="image-upload">
       <input type="file" id="image-upload" multiple>
