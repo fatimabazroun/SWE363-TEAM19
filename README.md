@@ -45,13 +45,13 @@ code: 1234
 email: admin@samra.com  
 passward: pass123  
 code: 1234  
-example: guest user can just go through the stories and view the pages 
-creator or users who have an account, they can log in and also join events, comment, like and follow creators unlike guest 
-admin: can edit, delete comments, edit map and also do what the users can do 
+example: guest user can just go through the stories and view the pages   
+creator or users who have an account, they can log in and also join events, comment, like and follow creators unlike guest   
+admin: can edit, delete comments, edit map and also do what the users can do   
 
 
 
-Team member names and roles.  
+Team member names and roles.    
 
 `Fatima Bazroun:` homepage: the header ,footer , the cards at the bottom multiple page navigation  , join functions and accessibility for guest users and creators different view of it which was implement across the whole website while also linking to the pages .  login page for both admin and creator the functions of them checking credential and while adding verification code. map pages: integrating the api making it customizable for the app and linking it to the libraries. dhahran-library, popular-stories, riyadh-library adding filter, search and reset button in each page, join button and multiple pages navigation. Creative the profile for the creator and linked it accordingly.  Helped with debugging stories, like, comment to limit access. Fixing the issue with disconnecting join and clicking the story, helped with debugging testing as well, creating readme file, the repository and figma designs.  
 
