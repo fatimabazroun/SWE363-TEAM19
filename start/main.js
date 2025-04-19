@@ -97,6 +97,9 @@ function addComment() {
     commentDiv.innerHTML = commentText;
     commentsList.appendChild(commentDiv);
 
+    // إضافة زر الحذف إذا كان المستخدم "admin"
+    addDeleteButtonToComment(commentDiv);
+
     let storyId = window.location.pathname;
     saveComment(commentText, storyId);
 
@@ -120,5 +123,26 @@ function loadComments(storyId) {
         commentDiv.className = "comment";
         commentDiv.innerHTML = comment;
         commentsList.appendChild(commentDiv);
-    });
+
+        // إضافة زر الحذف إذا كان المستخدم "admin"
+        addDeleteButtonToComment(commentDiv);
+    })
+}
+
+// إضافة زر حذف لكل تعليق جديد
+function addDeleteButtonToComment(commentDiv) {
+    if (localStorage.getItem("userRole") === "admin") {
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "delete-btn";
+        deleteButton.innerText = "Delete";
+        deleteButton.onclick = function () {
+            deleteComment(deleteButton);
+        };
+        commentDiv.appendChild(deleteButton);
+}}
+
+// حذف التعليق
+function deleteComment(button) {
+    const comment = button.parentElement;
+    comment.remove();
 }
