@@ -65,5 +65,5 @@ Built a responsive story content page featuring a header with image and metadata
 `Renad Alqahtani:`
 In this project, I created a creator dashboard (`creator-dashboard.html`) I specifically implemented and styled the Followers, Favorites, and Messages sections, making them interactive and user-friendly. Also three detailed follower profile pages (`HanaOmar.html`, `NouraAlqahtani.html`, and `MohammedAlhajri.html`) for a heritage-focused web platform called "Samra." The dashboard allows creators to manage messages, followers, and favorites, with interactive sections and styled tables. Each follower profile showcases unique personal information, including their role, region, specialty, biography, interests, and recent activity, all aligned with the platform’s mission to preserve Saudi oral traditions. The design is consistent across pages, using shared headers, footers, and layout styles to ensure a cohesive user experience.
 
-'Saeah Alsaleem'
+Sarah Alsaleem:
 Story writing page. Modify the map to suit the supervisor's functions. Edit comments to match moderator functions,helped with debugging testing,Corrected the problem with admin login.
