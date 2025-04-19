@@ -196,6 +196,48 @@
 </head>
 <body>
 
+  <script>
+    function logoutConfirmation() {
+      const confirmed = confirm("Are you sure you want to log out?");
+      if (confirmed) {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userRole");
+        window.location.href = "Homepage.html";
+      }
+    }
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+      const userRole = localStorage.getItem("userRole");
+  
+      if (isLoggedIn && userRole === "creator") {
+        const headerButtons = document.querySelector('header > div:last-child');
+        headerButtons.innerHTML = `
+          <span style="font-weight: bold; color: #8b0000;">Welcome, Creator</span>
+          <a href="creator-dashboard.html" style="text-decoration: none;">
+            <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+              <span style="font-size: 1.1rem;">👤</span> My Account
+            </button>
+          </a>
+          <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+        `;
+      }
+  
+      if (isLoggedIn && userRole === "admin") {
+        const headerButtons = document.querySelector('header > div:last-child');
+        headerButtons.innerHTML = `
+          <span style="font-weight: bold; color: #8b0000;">Welcome, Admin</span>
+          <a href="admin-dashboard.html" style="text-decoration: none;">
+            <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+              <span style="font-size: 1.1rem;">👤</span> My Account
+            </button>
+          </a>
+          <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+        `;
+      }
+    });
+      </script>
+
   <header>
     <div style="display: flex; align-items: center; gap: 1rem;">
       <img src="images/logo.jpg" alt="Samra Logo" class="logo">
