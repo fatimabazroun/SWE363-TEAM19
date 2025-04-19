@@ -312,7 +312,6 @@
   <select id="story-type">
     <option value="">Select Story Type</option>
     <option value="fiction">Fiction</option>
-    <option value="non-fiction">Non-fiction</option>
     <option value="community-gathering">Community Gathering</option>
     <option value="history">History</option>
     <option value="workshop">Workshop</option>
