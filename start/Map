@@ -56,7 +56,6 @@
       text-decoration: none;
       color: inherit;
     }
-
     .dropdown {
       position: absolute;
       top: 100%;
@@ -155,20 +154,50 @@
     }
 
     #container {
-  width: 90%;
-  max-width: 1000px;
-  height: 600px;
-  margin: 2rem auto;
-}
+      width: 90%;
+      max-width: 1000px;
+      height: 600px;
+      margin: 2rem auto;
+      border: 1px solid #ccc;
+    }
 
+    .loading {
+      margin-top: 10em;
+      text-align: center;
+      color: gray;
+    }
 
-.loading {
-    margin-top: 10em;
-    text-align: center;
-    color: gray;
-}
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-@media (max-width: 768px) {
+    .action-btn {
+      background-color: #8b0000;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+
+    .action-btn:hover {
+      background-color: #a30000;
+    }
+
+    .select-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    select {
+      padding: 0.5rem;
+      border-radius: 6px;
+      margin: 0 10px;
+      font-size: 1rem;
+    }
+    @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: flex-start;
@@ -193,43 +222,61 @@
         padding: 1rem;
       }
     }
-   
+
   </style>
 </head>
 <body>
-  <header>
-    <div style="display: flex; align-items: center; gap: 1rem;">
-      <img src="images/logo.jpg" alt="Samra Logo" class="logo">
-      <nav>
-        <ul class="nav-list">
-          <li><a href="Homepage.html">Home Page</a></li>
-          <li><a href="Map.html">View Map</a></li>
-          <li>
-            Stories ▾
-            <ul class="dropdown">
-              <li><a href="popular-stories.html">Popular Stories</a></li>
-              <li><a href="riyadh-library.html">Riyadh Library</a></li>
-              <li><a href="dhahran-library.html">ash sharqiyah Library</a></li>
+    <header>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <img src="images/logo.jpg" alt="Samra Logo" class="logo">
+          <nav>
+            <ul class="nav-list">
+              <li><a href="Homepage.html">Home Page</a></li>
+              <li><a href="Map.html">View Map</a></li>
+              <li>
+                Stories ▾
+                <ul class="dropdown">
+                  <li><a href="popular-stories.html">Popular Stories</a></li>
+                  <li><a href="riyadh-library.html">Riyadh Library</a></li>
+                  <li><a href="dhahran-library.html">ash sharqiyah Library</a></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-      <a href="creator-login.html">
-        <button class="login-btn">Log in As Creator</button>
-      </a>
-      <a href="admin-login.html">
-        <button class="login-btn">Log in As Admin</button>
-      </a>
-    </div>
-  </header>
-  >
-    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
- <div id="container"></div>
+          </nav>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+          <a href="creator-login.html">
+            <button class="login-btn">Log in As Creator</button>
+          </a>
+          <a href="admin-login.html">
+            <button class="login-btn">Log in As Admin</button>
+          </a>
+        </div>
+      </header>
+      
+  <div id="container"></div>
 
- 
+  <div class="select-container" id="admin-containor" style="display: none;">
+    <select id="citySelector">
+      <option value="sa-ri">Riyadh</option>
+      <option value="sa-jz">Jazan</option>
+      <option value="sa-md">Madina</option>
+      <option value="sa-sh">Ash Sharqiyah</option>
+      <option value="sa-tb">Tabuk</option>
+      <option value="sa-nj">Najran</option>
+      <option value="sa-mk">Makkah</option>
+      <option value="sa-ha">Hail</option>
+      <option value="sa-qs">Al Quassim</option>
+      <option value="sa-jf">Al Jawf</option>
+      <option value="sa-as">Asir</option>
+      <option value="sa-hs">Al Hudud ash Shamaliyah</option>
+      <option value="sa-ba">Al Bahah</option>
+      
+      <!-- Add more cities here -->
+    </select>
+    <button class="action-btn" onclick="addCity()">Add City</button>
+    <button class="action-btn" onclick="removeCity()">Remove City</button>
+  </div>
 
   <footer>
     <div class="footer-text">Samra &copy; 2025. All rights reserved.</div>
@@ -240,91 +287,106 @@
     </div>
   </footer>
 
+  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+  
   <script>
-    (async () => {
-      const topology = await fetch(
-        'https://code.highcharts.com/mapdata/countries/sa/sa-all.topo.json'
-      ).then(response => response.json());
-  
-      const regionLinks = {
-        'Ar Riyad': 'riyadh-library.html',
-        'Ash Sharqiyah': 'dhahran-library.html'
-      };
-  
-      Highcharts.mapChart('container', {
-        chart: {
-          map: topology
-        },
-  
-        title: { text: 'Map of Saudi Arabia' },
-        subtitle: { text: '' },
-  
-        mapNavigation: { enabled: false },
-  
-        tooltip: { enabled: false },
-  
-        legend: { enabled: false },
-  
-        exporting: { enabled: false },
-  
-        colorAxis: {
-          min: 0,
-          minColor: '#d9a6a1', // light maroon
-          maxColor: '#d9a6a1'
-        },
-  
-        series: [{
-          data: [
-            ['sa-4293', 1], ['sa-tb', 1], ['sa-jz', 1], ['sa-nj', 1],
-            ['sa-ri', 1], ['sa-md', 1], ['sa-ha', 1], ['sa-qs', 1],
-            ['sa-hs', 1], ['sa-jf', 1], ['sa-sh', 1], ['sa-ba', 1],
-            ['sa-as', 1], ['sa-mk', 1]
-          ],
-          name: 'Regions',
-          states: {
-            hover: {
-              color: '#800000' // dark maroon on hover
-            }
-          },
-          dataLabels: {
-            enabled: true,
-            format: '{point.name}',
-            style: {
-              fontWeight: 'bold',
-              color: '#333'
-            }
-          },
-          point: {
-            events: {
-              click: function () {
-                const link = regionLinks[this.name];
-                if (link) window.location.href = link;
-              }
-            }
-          }
-        }]
-      });
-    })();
+    let mapChart;
+    let regionData = [
+      ['sa-4293', 1], ['sa-tb', 1], ['sa-jz', 1], ['sa-nj', 1],
+      ['sa-ri', 1], ['sa-md', 1], ['sa-ha', 1], ['sa-qs', 1],
+      ['sa-hs', 1], ['sa-jf', 1], ['sa-sh', 1], ['sa-ba', 1],
+      ['sa-as', 1], ['sa-mk', 1]
+    ];
 
+    // Function to render the map
+    function renderMap() {
+      fetch('https://code.highcharts.com/mapdata/countries/sa/sa-all.topo.json')
+        .then(response => response.json())
+        .then(topology => {
+          Highcharts.mapChart('container', {
+            chart: {
+              map: topology
+            },
+            title: { text: 'Map of Saudi Arabia' },
+            subtitle: { text: '' },
+            mapNavigation: { enabled: false },
+            tooltip: { enabled: false },
+            legend: { enabled: false },
+            exporting: { enabled: false },
+            colorAxis: {
+              min: 0,
+              minColor: '#d9a6a1', // light maroon
+              maxColor: '#d9a6a1'
+            },
+            series: [{
+              data: regionData,
+              name: 'Regions',
+              states: {
+                hover: {
+                  color: '#800000' // dark maroon on hover
+                }
+              },
+              dataLabels: {
+                enabled: true,
+                format: '{point.name}',
+                style: {
+                  fontWeight: 'bold',
+                  color: '#333'
+                }
+              },
+              point: {
+                events: {
+                  click: function () {
+                    alert('Region clicked: ' + this.name);
+                  }
+                }
+              }
+            }]
+          });
+        });
+    }
+
+    // Function to add a city to the map
+    function addCity() {
+      const city = document.getElementById('citySelector').value;
+      const newCity = [city, 1];
+      regionData.push(newCity); // Add the new city data
+      renderMap(); // Re-render the map with the new city
+    }
+
+    // Function to remove a city from the map
+    function removeCity() {
+      const city = document.getElementById('citySelector').value;
+      regionData = regionData.filter(cityData => cityData[0] !== city); // Remove the selected city
+      renderMap(); // Re-render the map without the removed city
+    }
+
+    // Initial rendering of the map when the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMap();
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const userRole = localStorage.getItem("userRole");
 
-    if (isLoggedIn && userRole === "creator") {
+    if (isLoggedIn && userRole === "admin") {
       const headerButtons = document.querySelector('header > div:last-child');
       headerButtons.innerHTML = `
-        <a href="creator-dashboard.html" style="text-decoration: none;">
+        <a href="admin-dashboard.html" style="text-decoration: none;">
           <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
             <span style="font-size: 1.1rem;">👤</span> My Account
           </button>
         </a>
         <button class="login-btn" onclick="logout()">Log Out</button>
       `;
+      // document.getElementById("admin-containor").style.display="block";
     }
   });
+    
 
-  function logout() {
+    function logout() {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userRole");
     location.reload();
@@ -332,7 +394,7 @@
   </script>
 
 <script>
-  function logoutConfirmation() {
+      function logoutConfirmation() {
     const confirmed = confirm("Are you sure you want to log out?");
     if (confirmed) {
       localStorage.removeItem("isLoggedIn");
@@ -344,6 +406,20 @@
   document.addEventListener("DOMContentLoaded", function () {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const userRole = localStorage.getItem("userRole");
+
+    if (isLoggedIn && userRole === "admin") {
+      const headerButtons = document.querySelector('header > div:last-child');
+      headerButtons.innerHTML = `
+        <span style="font-weight: bold; color: #8b0000;">Welcome, Admin</span>
+        <a href="admin-dashboard.html" style="text-decoration: none;">
+          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 1.1rem;">👤</span> My Account
+          </button>
+        </a>
+        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
+      `;
+      document.getElementById("admin-containor").style.display="block";
+    }
 
     if (isLoggedIn && userRole === "creator") {
       const headerButtons = document.querySelector('header > div:last-child');
@@ -357,21 +433,9 @@
         <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
       `;
     }
-
-    if (isLoggedIn && userRole === "admin") {
-      const headerButtons = document.querySelector('header > div:last-child');
-      headerButtons.innerHTML = `
-        <span style="font-weight: bold; color: #8b0000;">Welcome, Admin</span>
-        <a href="admin-dashboard.html" style="text-decoration: none;">
-          <button class="login-btn" style="display: flex; align-items: center; gap: 0.4rem;">
-            <span style="font-size: 1.1rem;">👤</span> My Account
-          </button>
-        </a>
-        <button class="login-btn" onclick="logoutConfirmation()">Log Out</button>
-      `;
-    }
   });
 </script>
-  
+
+
 </body>
 </html>
