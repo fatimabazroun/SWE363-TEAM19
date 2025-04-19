@@ -54,3 +54,6 @@ Team member names and roles.
 
 `Sadeem Alotaibi:`
 Implemented and updated story pages with like, comment, view, follow/unfollow, and share features. Handled user access control and localStorage functionality in main.js.
+
+`Fatimah Alshabaan:`
+Built a responsive story content page featuring a header with image and metadata, interactive view/like counters, comment section, and author follow button. Implemented clean styling with a card-based layout, proper typography hierarchy, and mobile-responsive design using flexbox and media queries. Added share functionality and connected interactive elements to main.js for localStorage integration.
