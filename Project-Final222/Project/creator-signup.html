@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samra - Creator Sign Up</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f3f6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .signup-container {
+      max-width: 400px;
+      background: white;
+      margin: 4rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      display: block;
+      margin: 2rem auto 1rem;
+      max-width: 150px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    p {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .feedback {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      color: #888;
+    }
+
+    .btn {
+      width: 100%;
+      background: #8b0000;
+      color: white;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      background: #a30000;
+    }
+
+    .bottom-link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+
+    .password-wrapper {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .password-wrapper input {
+      width: 100%;
+      padding: 0.6rem;
+      padding-right: 4rem;
+      /* space inside input for Show/Hide */
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .password-wrapper .show-hide {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: #8b0000;
+      cursor: pointer;
+      background: white;
+      padding: 2px 5px;
+    }
+
+    @media (max-width: 480px) {
+      .signup-container {
+        margin: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <img src="images/logo.jpg" alt="Samra Logo" class="logo" />
+  <div class="signup-container">
+    <h2>Create New Account</h2>
+    <p>Become a creator and start sharing stories!</p>
+
+    <label>Full Name</label>
+    <input type="text" id="fullName" placeholder="Your Full Name" required />
+    <div id="nameFeedback" class="feedback"></div>
+
+    <label>Email Address</label>
+    <input type="email" id="email" placeholder="you@example.com" required />
+    <div id="emailFeedback" class="feedback"></div>
+
+    <label>Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="••••••••" required />
+      <span class="show-hide" onclick="togglePassword('password', this)">Show</span>
+    </div>
+    <div id="passwordStrength" class="feedback"></div>
+
+    <label>Confirm Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="confirmPassword" placeholder="••••••••" required />
+      <span class="show-hide" onclick="togglePassword('confirmPassword', this)">Show</span>
+    </div>
+    <div id="passwordFeedback" class="feedback"></div>
+
+
+    <button class="btn" id="signupBtn">Create Account</button>
+
+    <div class="bottom-link">
+      Already have an account? <a href="creator-login.html" style="color: #8b0000;">Log In</a>
+    </div>
+
+    <div id="message" style="margin-top: 1rem; text-align: center; font-size: 0.9rem;"></div>
+  </div>
+
+  <script>
+    function togglePassword(id, toggleEl) {
+      const input = document.getElementById(id);
+      if (input.type === 'password') {
+        input.type = 'text';
+        toggleEl.innerText = 'Hide';
+      } else {
+        input.type = 'password';
+        toggleEl.innerText = 'Show';
+      }
+    }
+
+    const signupBtn = document.getElementById('signupBtn');
+    const fullName = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const message = document.getElementById('message');
+
+    const nameFeedback = document.getElementById('nameFeedback');
+    const emailFeedback = document.getElementById('emailFeedback');
+    const passwordFeedback = document.getElementById('passwordFeedback');
+    const passwordStrength = document.getElementById('passwordStrength');
+
+    function isValidEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    function isStrongPassword(pass) {
+      return pass.length >= 8 &&
+        /[A-Z]/.test(pass) &&
+        /[a-z]/.test(pass) &&
+        /[0-9]/.test(pass) &&
+        /[^A-Za-z0-9]/.test(pass);
+    }
+
+    fullName.addEventListener('input', () => {
+      if (fullName.value.trim() === '') {
+        nameFeedback.textContent = '❌ Name cannot be empty.';
+        nameFeedback.style.color = 'red';
+        fullName.style.borderColor = 'red';
+      } else {
+        nameFeedback.textContent = '✅ Looks good!';
+        nameFeedback.style.color = 'green';
+        fullName.style.borderColor = 'green';
+      }
+    });
+
+    email.addEventListener('input', () => {
+      if (email.value.trim() === '') {
+        emailFeedback.textContent = '❌ Email cannot be empty.';
+        emailFeedback.style.color = 'red';
+        email.style.borderColor = 'red';
+      } else if (!isValidEmail(email.value.trim())) {
+        emailFeedback.textContent = '❌ Invalid email format.';
+        emailFeedback.style.color = 'red';
+        email.style.borderColor = 'red';
+      } else {
+        emailFeedback.textContent = '✅ Valid email address.';
+        emailFeedback.style.color = 'green';
+        email.style.borderColor = 'green';
+      }
+    });
+
+    password.addEventListener('input', () => {
+      if (password.value.trim() === '') {
+        passwordStrength.textContent = '❌ Password cannot be empty.';
+        passwordStrength.style.color = 'red';
+        password.style.borderColor = 'red';
+      } else if (isStrongPassword(password.value)) {
+        passwordStrength.textContent = '✅ Strong password.';
+        passwordStrength.style.color = 'green';
+        password.style.borderColor = 'green';
+      } else {
+        passwordStrength.textContent = '❌ Password must have at least 8 characters, uppercase, lowercase, number, and special symbol.';
+        passwordStrength.style.color = 'red';
+        password.style.borderColor = 'red';
+      }
+    });
+
+    confirmPassword.addEventListener('input', () => {
+      if (confirmPassword.value.trim() === '') {
+        passwordFeedback.textContent = '❌ Confirm password cannot be empty.';
+        passwordFeedback.style.color = 'red';
+        confirmPassword.style.borderColor = 'red';
+      } else if (password.value !== confirmPassword.value) {
+        passwordFeedback.textContent = '❌ Passwords do not match.';
+        passwordFeedback.style.color = 'red';
+        confirmPassword.style.borderColor = 'red';
+      } else {
+        passwordFeedback.textContent = '✅ Passwords match.';
+        passwordFeedback.style.color = 'green';
+        confirmPassword.style.borderColor = 'green';
+      }
+    });
+
+    signupBtn.addEventListener('click', async function (e) {
+      e.preventDefault();
+      message.textContent = "";
+
+      let hasError = false;
+
+      if (fullName.value.trim() === '') {
+        nameFeedback.textContent = '❌ Name cannot be empty.';
+        nameFeedback.style.color = 'red';
+        fullName.style.borderColor = 'red';
+        hasError = true;
+      }
+
+      if (email.value.trim() === '') {
+        emailFeedback.textContent = '❌ Email cannot be empty.';
+        emailFeedback.style.color = 'red';
+        email.style.borderColor = 'red';
+        hasError = true;
+      } else if (!isValidEmail(email.value.trim())) {
+        emailFeedback.textContent = '❌ Invalid email format.';
+        emailFeedback.style.color = 'red';
+        email.style.borderColor = 'red';
+        hasError = true;
+      }
+
+      if (password.value.trim() === '') {
+        passwordStrength.textContent = '❌ Password cannot be empty.';
+        passwordStrength.style.color = 'red';
+        password.style.borderColor = 'red';
+        hasError = true;
+      } else if (!isStrongPassword(password.value)) {
+        passwordStrength.textContent = '❌ Weak password.';
+        passwordStrength.style.color = 'red';
+        password.style.borderColor = 'red';
+        hasError = true;
+      }
+
+      if (confirmPassword.value.trim() === '') {
+        passwordFeedback.textContent = '❌ Confirm password cannot be empty.';
+        passwordFeedback.style.color = 'red';
+        confirmPassword.style.borderColor = 'red';
+        hasError = true;
+      } else if (password.value !== confirmPassword.value) {
+        passwordFeedback.textContent = '❌ Passwords do not match.';
+        passwordFeedback.style.color = 'red';
+        confirmPassword.style.borderColor = 'red';
+        hasError = true;
+      }
+
+      if (hasError) {
+        message.textContent = "❌ Please fix the errors above before submitting.";
+        message.style.color = 'red';
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:5000/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: fullName.value.trim(),
+            email: email.value.trim(),
+            password: password.value
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          message.style.color = "green";
+          message.textContent = "✅ " + (data.message || "Signup successful!");
+
+          setTimeout(() => {
+            window.location.href = "creator-login.html";
+          }, 1500);
+        } else {
+          message.style.color = "red";
+          message.textContent = "❌ " + (data.message || "Signup failed.");
+        }
+      } catch (error) {
+        console.error(error);
+        message.style.color = "red";
+        message.textContent = "❌ Server error. Please try again later.";
+      }
+    });
+
+    // 🔥 Add Show/Hide toggle for both password fields:
+
+    // Create toggle buttons
+    const passwordToggle = document.createElement('span');
+    passwordToggle.innerText = 'Show';
+    passwordToggle.style.cursor = 'pointer';
+    passwordToggle.style.marginLeft = '10px';
+    passwordToggle.style.color = '#8b0000';
+    passwordToggle.onclick = () => togglePassword('password', passwordToggle);
+
+    const confirmPasswordToggle = document.createElement('span');
+    confirmPasswordToggle.innerText = 'Show';
+    confirmPasswordToggle.style.cursor = 'pointer';
+    confirmPasswordToggle.style.marginLeft = '10px';
+    confirmPasswordToggle.style.color = '#8b0000';
+    confirmPasswordToggle.onclick = () => togglePassword('confirmPassword', confirmPasswordToggle);
+
+    password.insertAdjacentElement('afterend', passwordToggle);
+    confirmPassword.insertAdjacentElement('afterend', confirmPasswordToggle);
+
+  </script>
+
+</body>
+
+</html>
