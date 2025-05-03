@@ -67,3 +67,5 @@ In this project, I created a creator dashboard (`creator-dashboard.html`) I spec
 
 Sarah Alsaleem:
 Story writing page. Modify the map to suit the supervisor's functions. Edit comments to match moderator functions,helped with debugging testing,Corrected the problem with admin login.
+
+`Reman Alqahtani:`I developed the Posts section in the creator dashboard, allowing creators to manage and view their published content in an organized and interactive layout. I also implemented the Admin section for event approval, where administrators can review, approve, or reject submitted events before they go live on the platform.
