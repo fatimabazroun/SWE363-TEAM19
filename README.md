@@ -32,7 +32,11 @@ Setup and installation instructions.
       **Admin:**  
       email: admin@samra.com  
       passward: pass123  
-      code: 1234  
+      code: 1234
+
+5. you can go the website via link https://samra-7dc09ed5b123.herokuapp.com/homepage.html
+6. or add http://127.0.0.1:5000/ to any fetch method
+7. run serve.js in the termial 
 
 Usage instructions and examples.  
 `login credentials`  
@@ -52,6 +56,154 @@ code always 1234
 example: guest user can just go through the stories and view the pages   
 creator or users who have an account, they can log in and also join events, comment, like and follow creators unlike guest   
 admin: can edit, delete comments, edit map and also do what the users can do   
+
+
+==============================
+✅ Back-End Setup Instructions
+==============================
+
+1. Install dependencies
+-----------------------
+npm install
+
+2. (Optional) Create a .env file for configs
+--------------------------------------------
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+
+3. Update mongoose connection in server.js
+------------------------------------------
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+
+4. Start the server
+-------------------
+node server.js
+
+Default server runs on:
+http://localhost:5000
+but for deployent it was removed 
+
+
+==========================
+📚 API Documentation 
+==========================
+
+▶ POST /signup
+--------------
+Creates a new creator user.
+
+Request:
+{
+  "fullName": "Fatima",
+  "email": "fatima@example.com",
+  "password": "Fatima@123"
+}
+
+Response:
+{
+  "message": "✅ Account created successfully!"
+}
+
+
+▶ POST /login
+-------------
+Login as creator or admin.
+
+Request:
+{
+  "email": "fatima@example.com",
+  "password": "Fatima@123"
+}
+
+Response:
+{
+  "message": "✅ Login successful! Enter verification code.",
+  "fullName": "Fatima",
+  "role": "creator",
+  "verificationCode": "1234"
+}
+▶ POST /stories
+---------------
+Create a new story.
+
+Request:
+{
+  "title": "My Story",
+  "content": "Once upon a time...",
+  "author": { "name": "Fatima" },
+  "genre": "Fiction",
+  "region": "Riyadh"
+}
+
+Response:
+{
+  "_id": "...",
+  "title": "My Story",
+  ...
+}
+▶ GET /stories
+--------------
+Fetch all stories.
+
+Response:
+[
+  { "_id": "...", "title": "Story 1", ... },
+  { "_id": "...", "title": "Story 2", ... }
+]
+
+▶ POST /api/comments
+--------------------
+Add a comment to a story.
+
+Request:
+{
+  "storyId": "STORY_OBJECT_ID",
+  "userName": "Fatima",
+  "content": "Loved this!"
+}
+▶ POST /api/likes/toggle
+------------------------
+Like or unlike a story.
+
+Request:
+{
+  "storyId": "STORY_OBJECT_ID",
+  "userId": "USER_OBJECT_ID"
+}
+
+Response:
+{
+  "newCount": 5
+}
+▶ POST /api/follow/toggle
+--------------------------
+Follow/unfollow a creator.
+
+Request:
+{
+  "followerId": "USER_ID",
+  "authorId": "CREATOR_ID"
+}
+
+Response:
+{
+  "isFollowing": true,
+  "followerCount": 12
+}
+▶ GET /api/creators/:id
+------------------------
+Fetch a creator's profile + stories + recent activity.
+
+▶ PUT /api/creators/:id
+------------------------
+Update a creator's profile (bio, interests, etc.)
+
+▶ GET /api/creators/:id/follow-status
+-------------------------------------
+Check if a user is following a creator.
 
 
 
