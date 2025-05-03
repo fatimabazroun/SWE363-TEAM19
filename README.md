@@ -36,15 +36,19 @@ Setup and installation instructions.
 
 Usage instructions and examples.  
 `login credentials`  
-**creator:**  
-email: creator@samra.com  
-passward: pass123  
-code: 1234  
+**creator:** 
+
+fatimabazroun@gmail.com
+Fatima@123
+
+code:1234
 
 **Admin:**  
-email: admin@samra.com  
-passward: pass123  
+sara@samra.com
+SaraAdmin@123
 code: 1234  
+
+code always 1234
 example: guest user can just go through the stories and view the pages   
 creator or users who have an account, they can log in and also join events, comment, like and follow creators unlike guest   
 admin: can edit, delete comments, edit map and also do what the users can do   
